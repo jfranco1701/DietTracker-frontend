@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -8,6 +9,13 @@ import { FavoriteComponent } from './favorite/favorite.component';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 
+
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: '',  component: LandingComponent, pathMatch: 'full' }
+];
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,10 +23,14 @@ import { LandingComponent } from './landing/landing.component';
     RegisterComponent,
     FavoriteComponent,
     HomeComponent,
-    LandingComponent
+    LandingComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+  ],
+  exports: [
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
