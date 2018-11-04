@@ -8,6 +8,10 @@ import { RegisterComponent } from './register/register.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
+import { DatabaseadminComponent } from './databaseadmin/databaseadmin.component';
+import { MealComponent } from './meal/meal.component';
+import { WeightComponent } from './weight/weight.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 const routes: Routes = [
@@ -24,6 +28,10 @@ const routes: Routes = [
     FavoriteComponent,
     HomeComponent,
     LandingComponent,
+    DatabaseadminComponent,
+    MealComponent,
+    WeightComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
