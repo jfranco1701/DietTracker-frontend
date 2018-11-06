@@ -1,7 +1,24 @@
 <div>
-<div>
-  <p-card>
-    Welcome to DietTracker.  Please login using your email address and password.  If you do not have an account, please register to create one.
-  </p-card>
-</div>
+  <div>
+    <p-card>
+      <span>Welcome to DietTracker. Please login using your email address and password. If you do not have an account,
+        please <a routerLink="/register">register</a> to create one.</span>
+      <div>
+        Email Address
+      </div>
+      <div>
+        <input type="text" pInputText [(ngModel)]="emailAddress" />
+      </div>
+      <div>
+        Password
+      </div>
+      <div>
+        <input type="password" pInputText [(ngModel)]="password" />
+      </div>
+      <div>
+          <button routerLink="/register" pButton type="button" class="ui-button-info">Register</button>
+          <button pButton type="button" class="ui-button-primary">Login</button>
+      </div>
+    </p-card>
+  </div>
 </div>
