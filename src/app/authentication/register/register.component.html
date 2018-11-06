@@ -1,3 +1,56 @@
-<p>
-  register works!
-</p>
+
+
+
+<div>
+  <div>
+    <p-card>
+      <span>DietTracker new user registration.</span>
+      <div>
+        Email Address
+      </div>
+      <div>
+        <input type="text" pInputText [(ngModel)]="emailAddress" />
+      </div>
+      <div>
+        Confirm Email Address
+      </div>
+      <div>
+        <input type="text" pInputText [(ngModel)]="confirmEmailAddress" />
+      </div>
+      <div>
+        Password
+      </div>
+      <div>
+        <input type="password" pInputText [(ngModel)]="password" />
+      </div>
+      <div>
+        Confirm Password
+      </div>
+      <div>
+        <input type="password" pInputText [(ngModel)]="confirmPassword" />
+      </div>
+      <div>
+        First Name
+      </div>
+      <div>
+        <input type="text" pInputText [(ngModel)]="firstName" />
+      </div>
+      <div>
+        Last Name
+      </div>
+      <div>
+        <input type="text" pInputText [(ngModel)]="lastName" />
+      </div>
+      <div style="margin-top:20px;">
+          <ng-container *ngIf="recaptcha.render">
+              <p-captcha siteKey="6Ldv8ngUAAAAAA58h5b8-WKLAHNrK_tlhWkZXmHu" (onResponse)="showResponse($event)"></p-captcha>
+          </ng-container>
+
+      </div>
+      <div style="margin-top:20px;">
+        <button routerLink="/home" pButton type="button" class="ui-button-info">Cancel</button>
+        <button pButton type="button" class="ui-button-primary">Register</button>
+      </div>
+    </p-card>
+  </div>
+</div>

@@ -9,12 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { CaptchaModule } from 'primeng/captcha';
 
 @NgModule({
   imports: [
     CommonModule,
     CardModule,
     InputTextModule,
+    ButtonModule,
+    CaptchaModule,
     RouterModule.forChild(AuthenticationRoutes),
     FormsModule,
   ],
