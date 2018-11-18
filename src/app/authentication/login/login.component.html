@@ -7,18 +7,31 @@
         Email Address
       </div>
       <div>
-        <input type="text" pInputText [(ngModel)]="emailAddress" />
+        <input type="text" pInputText [(ngModel)]="user.username" />
+        <span *ngFor="let error of _authenticationService.errors.username">
+          <br />{{ error }}
+        </span>
       </div>
       <div>
         Password
       </div>
       <div>
-        <input type="password" pInputText [(ngModel)]="password" />
+        <input type="password" pInputText [(ngModel)]="user.password" />
+        <span *ngFor="let error of _authenticationService.errors.password"><br />
+          {{ error }}</span>
+      </div>
+      <div>
+          <span *ngFor="let error of _authenticationService.errors.non_field_errors">{{ error }}<br /></span>
       </div>
       <div>
           <button routerLink="/register" pButton type="button" class="ui-button-info">Register</button>
-          <button pButton type="button" class="ui-button-primary">Login</button>
+          <button pButton type="button" class="ui-button-primary" (click)="login()">Login</button>
       </div>
+      <div class="row" *ngIf="_authenticationService.token">
+          <div class="col-sm-12">You are logged in as {{_authenticationService.username }}.<br />
+            Token Expires: {{_authenticationService.token_expires }}<br />
+          </div>
+        </div>
     </p-card>
   </div>
 </div>

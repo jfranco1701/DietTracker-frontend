@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -19,38 +20,45 @@ export class AuthenticationService {
 
   // error messages received from the login attempt
   public errors: any = [];
+  private urlLogin: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private locationService: Location) {
+
     this.httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
+    this.urlLogin = locationService.prepareExternalUrl('/api/login/');
   }
 
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
   public login(user) {
-    this.http.post('/api-token-auth/', JSON.stringify(user), this.httpOptions).subscribe(
+    console.log('login ' + JSON.stringify(user));
+
+    this.http.post(this.urlLogin, JSON.stringify(user), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
       },
       err => {
         this.errors = err['error'];
+        console.log(this.errors);
       }
     );
   }
 
   // Refreshes the JWT token, to extend the time the user is logged in
-  public refreshToken() {
-    this.http
-      .post('/api-token-refresh/', JSON.stringify({ token: this.token }), this.httpOptions)
-      .subscribe(
-        data => {
-          this.updateData(data['token']);
-        },
-        err => {
-          this.errors = err['error'];
-        }
-      );
-  }
+  // public refreshToken() {
+  //   this.http
+  //     .post('/api-token-refresh/', JSON.stringify({ token: this.token }), this.httpOptions)
+  //     .subscribe(
+  //       data => {
+  //         this.updateData(data['token']);
+  //       },
+  //       err => {
+  //         this.errors = err['error'];
+  //       }
+  //     );
+  // }
 
   public logout() {
     this.token = null;

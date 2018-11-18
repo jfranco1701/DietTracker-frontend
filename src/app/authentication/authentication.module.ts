@@ -10,6 +10,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CaptchaModule } from 'primeng/captcha';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { CaptchaModule } from 'primeng/captcha';
     CaptchaModule,
     RouterModule.forChild(AuthenticationRoutes),
     FormsModule,
+    HttpClientModule,
   ],
   declarations: [LoginComponent, RegisterComponent],
 })
