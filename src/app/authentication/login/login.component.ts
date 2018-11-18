@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log('logging in ' + this.user.username);
+
+
     this._authenticationService.login({'username': this.user.username, 'password': this.user.password }).subscribe(
         data => {
           console.log(data);
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
         },
         err => {
           this.errors = err['error'];
+          localStorage.removeItem('currentUser');
           console.log(this.errors);
         });
   }
