@@ -11,6 +11,7 @@ import { ChartComponent } from './chart/chart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     WeightComponent,
     ChartComponent,
     NotfoundComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
