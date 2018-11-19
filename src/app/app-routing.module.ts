@@ -7,10 +7,8 @@ import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'users', component: UsersComponent},
   { path: 'home', component: HomeComponent,
     canActivate: [AuthGuardService] },
-
   { path: '**', component: NotfoundComponent },
 ];
 
