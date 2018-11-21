@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import {PanelModule} from 'primeng/panel';
+import {CardModule} from 'primeng/card';
 import { AppComponent } from './app.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +18,9 @@ import { UsersComponent } from './users/users.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +35,13 @@ import { JwtInterceptor } from './helpers';
     UsersComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    PanelModule,
+    CardModule,
     BrowserModule,
     AuthenticationModule,
     AppRoutingModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
