@@ -1,18 +1,35 @@
-
-    <p-card>
-      Content
-  </p-card>
-<p-panel header="dsfasdfa" [toggleable]="true">
-    Content
-</p-panel>
-
+<div>
+  <div class="dateselect">
+    <p-button icon="fas fa-arrow-left fa-2x" (onClick)="prevClick()"></p-button>
+    <p-calendar showIcon="true" showButtonBar="true" [(ngModel)]="mealDate"></p-calendar>
+    <p-button icon="fas fa-arrow-right fa-2x" (onClick)="nextClick()"> </p-button>
+  </div>
+</div>
 <div class="p-grid">
-<div class="p-col-8">
-
-
-
-</div>
-<div class="p-col-4">
-
-</div>
+  <div class="p-col-8">
+    <div></div>
+    <div>
+      <app-mealitems [mealName]="'Breakfast'" [mealItems]="itemsBreakfast"></app-mealitems>
+      <app-mealitems [mealName]="'Lunch'" [mealItems]="itemsLunch"></app-mealitems>
+      <app-mealitems [mealName]="'Dinner'" [mealItems]="itemsDinner"></app-mealitems>
+      <app-mealitems [mealName]="'Snack'" [mealItems]="itemsSnack"></app-mealitems>
+    </div>
+  </div>
+  <div class="p-col-4">
+    <p-card title="Daily Totals">
+      <table style="width:100%">
+        <tr *ngFor="let dailyTotal of dailyTotals">
+          <td>
+            {{dailyTotal.category}}
+          </td>
+          <td>
+            {{dailyTotal.total}}
+          </td>
+          <td>
+            {{dailyTotal.fromDailyAmt}}
+          </td>
+        </tr>
+      </table>
+    </p-card>
+  </div>
 </div>

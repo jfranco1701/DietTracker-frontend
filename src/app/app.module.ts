@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {PanelModule} from 'primeng/panel';
 import {CardModule} from 'primeng/card';
@@ -18,6 +19,12 @@ import { UsersComponent } from './users/users.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers';
 
+import {AccordionModule} from 'primeng/accordion';
+import {ListboxModule} from 'primeng/listbox';
+import {ButtonModule} from 'primeng/button';
+
+import {CalendarModule} from 'primeng/calendar';
+import { MealitemsComponent } from './meal/mealitems/mealitems.component';
 
 
 
@@ -33,15 +40,22 @@ import { JwtInterceptor } from './helpers';
     ChartComponent,
     NotfoundComponent,
     UsersComponent,
+    MealitemsComponent,
+
+
   ],
   imports: [
     BrowserAnimationsModule,
+    FormsModule,
     PanelModule,
     CardModule,
     BrowserModule,
     AuthenticationModule,
     AppRoutingModule,
-
+    AccordionModule,
+    ListboxModule,
+    ButtonModule,
+    CalendarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

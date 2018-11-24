@@ -1,0 +1,28 @@
+<p-panel>
+  <p-header>
+    <table style="width:100%">
+      <tr>
+        <td>
+          <b>{{ mealName }}</b>
+        </td>
+        <td style="text-align:right">
+          <p-button icon="fas fa-plus fa-2x"></p-button>
+        </td>
+      </tr>
+    </table>
+  </p-header>
+  <div *ngIf="mealItems.length > 0">
+    <table>
+      <tr *ngFor="let mealItem of mealItems">
+        <td>{{ mealItem.foodId }}</td>
+        <td>{{ mealItem.qty }}</td>
+        <td>{{ mealItem.foodDescription }}</td>
+        <td>Buttons</td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="mealItems.length < 1" style="height:50px;">
+    No meal items have been added.
+  </div>
+
+</p-panel>
