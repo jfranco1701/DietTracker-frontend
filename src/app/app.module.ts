@@ -26,6 +26,9 @@ import {ButtonModule} from 'primeng/button';
 import {CalendarModule} from 'primeng/calendar';
 import { MealitemsComponent } from './meal/mealitems/mealitems.component';
 
+import {TableModule} from 'primeng/table';
+
+
 
 
 @NgModule({
@@ -43,6 +46,7 @@ import { MealitemsComponent } from './meal/mealitems/mealitems.component';
     MealitemsComponent,
 
 
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -56,6 +60,7 @@ import { MealitemsComponent } from './meal/mealitems/mealitems.component';
     ListboxModule,
     ButtonModule,
     CalendarModule,
+    TableModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,0 +1,13 @@
+.itembutton {
+  margin-left:5px;
+  margin-right:5px;
+}
+
+:host /deep/ .ui-panel .ui-panel-titlebar {
+  background-color: #007AD9 !important;
+  color: white;
+}
+
+:host /deep/ .ui-table .ui-table-tbody > tr > td {
+    border: none;
+}

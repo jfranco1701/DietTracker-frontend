@@ -28,10 +28,15 @@ export class MealComponent implements OnInit {
     ];
 
     this.mealDate = new Date();
-    this.itemsBreakfast = [];
+
     this.itemsLunch = [];
     this.itemsDinner = [];
     this.itemsSnack = [];
+
+    this.itemsBreakfast = [
+      {'qty': 1 , 'foodId': 1, 'name': 'Test Food Item', 'calories': 310, 'protein': 5.5, 'fat': 1.1, 'fiber': 1.2,
+      'carbs': 20, 'sugars': 10, 'measure': 'Package'}
+    ];
   }
 
   nextClick() {
