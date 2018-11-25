@@ -1,3 +1,45 @@
-<p>
-  weight works!
-</p>
+<div class="p-grid">
+  <div class="p-col">
+    <p-panel>
+      <p-header>
+        <table style="width:100%">
+          <tr>
+            <td><b>Weight Tracking</b></td>
+            <td style="text-align:right">
+              <button
+                pButton
+                type="button"
+                class="ui-button-raised"
+                icon="fas fa-plus"
+                (click)="addWeight()"
+              ></button>
+            </td>
+          </tr>
+        </table>
+      </p-header>
+      <p-table [value]="weights">
+        <ng-template pTemplate="body" let-weight>
+          <tr>
+            <td>{{ weight.weightDate | date: 'MM/dd/yyyy' }}</td>
+            <td>{{ weight.weightAmt }} lbs</td>
+            <td style="text-align:right" width="115px">
+              <button
+                pButton
+                type="button"
+                icon="fas fa-edit"
+                class="ui-button-success weightbutton"
+              ></button>
+              <button
+                pButton
+                type="button"
+                icon="fas fa-trash-alt"
+                class="ui-button-danger weightbutton"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-panel>
+  </div>
+  <div class="p-col"><p-chart type="line" [data]="weightData" [options]="options"></p-chart></div>
+</div>

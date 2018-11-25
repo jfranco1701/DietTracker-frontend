@@ -28,6 +28,7 @@ import { MealitemsComponent } from './meal/mealitems/mealitems.component';
 
 import {TableModule} from 'primeng/table';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {ChartModule} from 'primeng/chart';
 
 
 
@@ -60,6 +61,7 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     CalendarModule,
     TableModule,
     ScrollPanelModule,
+    ChartModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
