@@ -1,21 +1,47 @@
 <div>
   <div class="dateselect">
-    <p-button icon="fas fa-arrow-left fa-2x" (onClick)="prevClick()"></p-button>
+    <p-button icon="fas fa-arrow-left" (onClick)="prevClick()"></p-button>
     <p-calendar showIcon="true" showButtonBar="true" [(ngModel)]="mealDate"></p-calendar>
-    <p-button icon="fas fa-arrow-right fa-2x" (onClick)="nextClick()"> </p-button>
+    <p-button icon="fas fa-arrow-right" (onClick)="nextClick()"> </p-button>
   </div>
 </div>
 <div class="p-grid">
   <div class="p-col-8">
-    <div></div>
     <div>
       <app-mealitems [mealName]="'Breakfast'" [mealItems]="itemsBreakfast"></app-mealitems>
+    </div>
+    <div style="margin-top:10px;">
       <app-mealitems [mealName]="'Lunch'" [mealItems]="itemsLunch"></app-mealitems>
+    </div>
+    <div style="margin-top:10px;">
       <app-mealitems [mealName]="'Dinner'" [mealItems]="itemsDinner"></app-mealitems>
+    </div>
+    <div style="margin-top:10px;">
       <app-mealitems [mealName]="'Snack'" [mealItems]="itemsSnack"></app-mealitems>
     </div>
   </div>
   <div class="p-col-4">
+      <div style="text-align:center">
+          <button
+            pButton
+            type="button"
+            class="ui-button-raised ui-button-rounded"
+            label="My Favorites"
+            style="width:250px;"
+            routerLink="/myfavorites"
+          ></button>
+        </div>
+        <div style="margin-top:20px; margin-bottom:20px; text-align:center">
+          <button
+            pButton
+            type="button"
+            class="ui-button-raised ui-button-rounded"
+            label="Weight Tracking"
+            style="width:250px;"
+            routerLink="/weighttracking"
+          ></button>
+        </div>
+
     <div>
       <p-card title="Daily Totals">
         <table style="width:100%">
@@ -29,36 +55,17 @@
     </div>
 
     <div style="margin-top:20px;">
-      <p-card title="Top Consumed Items">
+      <p-card title="Top Consumed Meal Items" subtitle="Last 30 Days">
           <p-scrollPanel [style]="{width: '100%', height: '200px'}">
               <div style="line-height:1.5">
                 <div *ngFor="let item of topConsumed">
-                    {{item.total}} - {{item.name}}
+                    {{item.total}} x {{item.name}}
                 </div>
               </div>
           </p-scrollPanel>
       </p-card>
     </div>
 
-    <div style="margin-top:20px; text-align:center">
-      <button
-        pButton
-        type="button"
-        class="ui-button-raised ui-button-rounded"
-        label="My Favorites"
-        style="width:250px;"
-        routerLink="/myfavorites"
-      ></button>
-    </div>
-    <div style="margin-top:20px; text-align:center">
-      <button
-        pButton
-        type="button"
-        class="ui-button-raised ui-button-rounded"
-        label="Weight Tracking"
-        style="width:250px;"
-        routerLink="/weighttracking"
-      ></button>
-    </div>
+
   </div>
 </div>

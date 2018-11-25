@@ -4,10 +4,15 @@
 }
 
 :host /deep/ .ui-panel .ui-panel-titlebar {
-  background-color: #007AD9 !important;
-  color: white;
+  background-color: rgb(209, 208, 208) !important;
+  color: black;
+  font-size: larger;
 }
 
 :host /deep/ .ui-table .ui-table-tbody > tr > td {
     border: none;
+}
+
+:host /deep/ .ui-button .ui-button-icon {
+  margin-top:20px;
 }
