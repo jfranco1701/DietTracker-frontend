@@ -27,6 +27,7 @@ import {CalendarModule} from 'primeng/calendar';
 import { MealitemsComponent } from './meal/mealitems/mealitems.component';
 
 import {TableModule} from 'primeng/table';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 
 
@@ -44,9 +45,6 @@ import {TableModule} from 'primeng/table';
     NotfoundComponent,
     UsersComponent,
     MealitemsComponent,
-
-
-
   ],
   imports: [
     BrowserAnimationsModule,
@@ -61,6 +59,7 @@ import {TableModule} from 'primeng/table';
     ButtonModule,
     CalendarModule,
     TableModule,
+    ScrollPanelModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

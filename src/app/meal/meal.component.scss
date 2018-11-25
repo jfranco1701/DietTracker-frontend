@@ -8,3 +8,17 @@
     padding-left: 50px;
   }
 }
+
+:host /deep/ .ui-scrollpanel .ui-scrollpanel-wrapper {
+  border-right: 9px solid #f4f4f4;
+}
+
+:host /deep/ .ui-scrollpanel .ui-scrollpanel-bar {
+  background-color: #1976d2;
+  opacity: 1;
+  transition: background-color .3s;
+}
+
+:host /deep/ .ui-scrollpanel .ui-scrollpanel-bar:hover {
+  background-color: #135ba1;
+}
