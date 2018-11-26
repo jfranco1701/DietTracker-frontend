@@ -6,12 +6,14 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { UsersComponent } from './users/users.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { WeightComponent } from './weight/weight.component';
+import { MealComponent } from './meal/meal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'myfavorites', component: FavoriteComponent },
+  { path: 'favorites', component: FavoriteComponent },
   { path: 'weighttracking', component: WeightComponent },
+  { path: 'meal', component: MealComponent },
   { path: '**', component: NotfoundComponent },
 ];
 

@@ -24,7 +24,7 @@ import {ListboxModule} from 'primeng/listbox';
 import {ButtonModule} from 'primeng/button';
 
 import {CalendarModule} from 'primeng/calendar';
-import { MealitemsComponent } from './meal/mealitems/mealitems.component';
+import { MealitemsComponent } from './mealitems/mealitems.component';
 
 import {TableModule} from 'primeng/table';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
@@ -35,8 +35,6 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 
 import {ToastModule} from 'primeng/toast';
-
-
 
 
 @NgModule({
