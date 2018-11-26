@@ -29,6 +29,12 @@ import { MealitemsComponent } from './meal/mealitems/mealitems.component';
 import {TableModule} from 'primeng/table';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ChartModule} from 'primeng/chart';
+import {DialogModule} from 'primeng/dialog';
+
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+
+import {ToastModule} from 'primeng/toast';
 
 
 
@@ -62,9 +68,13 @@ import {ChartModule} from 'primeng/chart';
     TableModule,
     ScrollPanelModule,
     ChartModule,
+    DialogModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
