@@ -2,16 +2,16 @@
   <div>
     <div class="dateselect">
       <p-button icon="fas fa-arrow-left" (onClick)="prevClick()"></p-button>
-      <p-calendar showIcon="true" showButtonBar="true" [(ngModel)]="mealDate"></p-calendar>
+      <p-calendar showIcon="true" showButtonBar="true" [(ngModel)]="mealDate" readonlyInput="true" (onSelect)="dateSelect()" (onClearClick)="clearClick()"></p-calendar>
       <p-button icon="fas fa-arrow-right" (onClick)="nextClick()"> </p-button>
     </div>
   </div>
   <div class="p-grid">
     <div class="p-col-8">
-      <div><app-mealitems [mealName]="'Breakfast'" [mealItems]="itemsBreakfast"></app-mealitems></div>
-      <div style="margin-top:10px;"><app-mealitems [mealName]="'Lunch'" [mealItems]="itemsLunch"></app-mealitems></div>
-      <div style="margin-top:10px;"><app-mealitems [mealName]="'Dinner'" [mealItems]="itemsDinner"></app-mealitems></div>
-      <div style="margin-top:10px;"><app-mealitems [mealName]="'Snack'" [mealItems]="itemsSnack"></app-mealitems></div>
+      <div><app-mealitems [mealName]="'Breakfast'" [meals]="mealsBreakfast"></app-mealitems></div>
+      <div style="margin-top:10px;"><app-mealitems [mealName]="'Lunch'" [meals]="mealsLunch"></app-mealitems></div>
+      <div style="margin-top:10px;"><app-mealitems [mealName]="'Dinner'" [meals]="mealsDinner"></app-mealitems></div>
+      <div style="margin-top:10px;"><app-mealitems [mealName]="'Snack'" [meals]="mealsSnack"></app-mealitems></div>
     </div>
     <div class="p-col-4">
       <div style="text-align:center">
@@ -37,11 +37,11 @@
 
       <div>
         <p-card title="Daily Totals">
-          <table style="width:100%">
+          <table>
             <tr *ngFor="let dailyTotal of dailyTotals">
-              <td>{{ dailyTotal.category }}</td>
-              <td>{{ dailyTotal.total }}</td>
-              <td>{{ dailyTotal.fromDailyAmt }}</td>
+              <td style="width:100px;">{{ dailyTotal.category }}</td>
+              <td style="width:80px; text-align: end;">{{ dailyTotal.total.toFixed(2) }}</td>
+              <td style="width:80px; text-align: end;">{{ dailyTotal.fromDailyAmt }}</td>
             </tr>
           </table>
         </p-card>
