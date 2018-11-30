@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MealItem } from '../models/mealitem';
 import { IMeal } from '../interfaces/IMeal';
+import { MealService } from '../services/meal.service';
 
 @Component({
   selector: 'app-mealitems',
@@ -8,24 +9,41 @@ import { IMeal } from '../interfaces/IMeal';
   styleUrls: ['./mealitems.component.scss']
 })
 export class MealitemsComponent implements OnInit {
-  @Input() meals: IMeal[];
   @Input() mealName: string;
+  @Input() mealDate: Date;
 
   cols: any[];
+  meals: IMeal[];
 
 
-  constructor() { }
+  constructor(
+    private mealService: MealService
+  ) { }
 
   ngOnInit() {
     this.cols = [
       { field: 'quantity', header: ''},
       { field: 'foodname', header: ''}
     ];
+
+    this.getMeals(this.mealDate, this.mealName);
   }
 
-  // addItem() {
-  //   this.mealItems.push({'qty': 2 , 'foodId': 1, 'name': 'Test Food Item 2', 'calories': 310, 'protein': 5.5, 'fat': 1.1, 'fiber': 1.2,
-  //   'carbs': 20, 'sugars': 10, 'measure': 'Package'});
-  // }
+  deleteMeal(id) {
+    this.mealService.deleteMeal(id)
+      .subscribe(res => {
+          this.getMeals(this.mealDate, this.mealName);
+        }, (err) => {
+          console.log(err);
+        }
+      );
+  }
 
+  getMeals(mealDate, mealType) {
+    this.mealService
+    .getMeals(mealDate, mealType)
+    .subscribe(meals => {
+      this.meals = meals;
+    });
+  }
 }

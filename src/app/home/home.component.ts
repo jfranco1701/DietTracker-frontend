@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.mealDate = new Date();
     this.mealDate = new Date(this.mealDate.getTime() - this.mealDate.getTimezoneOffset() * 60000);
 
-    this.search();
+    // this.search();
 
     this.topConsumed = [
       // {'name': 'Test Item #1', 'total': 10},
@@ -72,21 +72,21 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  search() {
-    console.log(this.mealDate);
+  // search() {
+  //   console.log(this.mealDate);
 
-    this.mealService
-    .getMeals(this.mealDate)
-    .subscribe(meals => {
-      this.mealsLunch = meals.filter(meal => meal.mealtype === 'Lunch');
-      this.mealsBreakfast = meals.filter(meal => meal.mealtype === 'Breakfast');
-      this.mealsDinner = meals.filter(meal => meal.mealtype === 'Dinner');
-      this.mealsSnack = meals.filter(meal => meal.mealtype === 'Snack');
-      this.computeDailyTotals(meals);
+  //   this.mealService
+  //   .getMeals(this.mealDate)
+  //   .subscribe(meals => {
+  //     this.mealsLunch = meals.filter(meal => meal.mealtype === 'Lunch');
+  //     this.mealsBreakfast = meals.filter(meal => meal.mealtype === 'Breakfast');
+  //     this.mealsDinner = meals.filter(meal => meal.mealtype === 'Dinner');
+  //     this.mealsSnack = meals.filter(meal => meal.mealtype === 'Snack');
+  //     this.computeDailyTotals(meals);
 
-      this.meals = meals;
-    });
-  }
+  //     this.meals = meals;
+  //   });
+  // }
 
   logout() {
     this.authenticationService.logout();
@@ -95,22 +95,22 @@ export class HomeComponent implements OnInit {
 
   nextClick() {
     this.mealDate = new Date(this.mealDate.getTime() + 86400000);
-    this.search();
+    // this.search();
   }
 
   prevClick() {
     this.mealDate = new Date(this.mealDate.getTime() - 86400000);
-    this.search();
+    // this.search();
   }
 
   clearClick() {
     this.mealDate = new Date();
     this.mealDate = new Date(this.mealDate.getTime() - this.mealDate.getTimezoneOffset() * 60000);
-    this.search();
+    // this.search();
   }
 
   dateSelect() {
-    this.search();
+    // this.search();
   }
 
 }
