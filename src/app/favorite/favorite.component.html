@@ -1,3 +1,71 @@
-<p>
-  favorite works!
-</p>
+
+<div class="p-grid">
+  <div class="p-col">
+    <p-panel>
+      <p-header> <b>My Favorites</b> </p-header>
+
+      <p-table [columns]="cols" [value]="favorites" autoLayout="true" dataKey="name">
+          <ng-template pTemplate="header" let-columns>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+            <tr>
+              <td width="50px">
+                <a href="#" [pRowToggler]="rowData">
+                  <i
+                    [ngClass]="
+                      expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'
+                    "
+                  ></i>
+                </a>
+              </td>
+              <td>{{ rowData.foodname }}</td>
+              <td style="text-align:right" width="115px">
+                <button pButton type="button" icon="fas fa-edit" class="ui-button-success itembutton"></button>
+                <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger itembutton"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+            <tr>
+              <td [attr.colspan]="3">
+                <table>
+                  <tr>
+                    <td>
+                      <table>
+                        <tr>
+                          <td><b>Calories:</b> {{ rowData.calories }}</td>
+                          <td><b>Fat:</b> {{ rowData.fat }}</td>
+                          <td><b>Carbs:</b> {{ rowData.carbs }}</td>
+                          <td><b>Fiber:</b> {{ rowData.fiber }}</td>
+                          <td><b>Sugars:</b> {{ rowData.sugars }}</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table>
+                        <tr>
+                          <td><b>Protein:</b> {{ rowData.protein }}</td>
+                          <td><b>Measure:</b> {{ rowData.measure }}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <div style="margin-top:10px; text-align:center;">
+              No favorite items have been added.
+            </div>
+          </ng-template>
+        </p-table>
+
+    </p-panel>
+  </div>
+</div>

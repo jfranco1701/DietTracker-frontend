@@ -14,10 +14,6 @@ import { MealService } from '../services/meal.service';
 })
 export class HomeComponent implements OnInit {
   dailyTotals: DailyTotal[];
-  // itemsBreakfast: MealItem[];
-  // itemsLunch: MealItem[];
-  // itemsDinner: MealItem[];
-  // itemsSnack: MealItem[];
   topConsumed: TopConsumed[];
   mealDate: Date;
   meals: IMeal[];
