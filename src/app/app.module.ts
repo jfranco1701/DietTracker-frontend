@@ -36,6 +36,7 @@ import {MessageModule} from 'primeng/message';
 
 import {ToastModule} from 'primeng/toast';
 
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {ToastModule} from 'primeng/toast';
     MessagesModule,
     MessageModule,
     ToastModule,
+    ConfirmDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

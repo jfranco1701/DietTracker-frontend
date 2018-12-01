@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Location } from '@angular/common';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError, tap, retry } from 'rxjs/operators';
 import { IMeal } from '../interfaces/IMeal';
 
 @Injectable({
@@ -22,22 +22,22 @@ export class MealService {
   }
 
   deleteMeal(id): Observable<any> {
-    return this.http.delete<any>(this.urlDetail + id).pipe(
+    return this.http.delete<any>(this.urlDetail + id + '/').pipe(
+      retry(3),
       tap(_ => console.log(`deleted meal id=${id}`)),
-      catchError(this.handleError<any>('deleteMeal'))
-    );
+     catchError(this.handleError));
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 }
