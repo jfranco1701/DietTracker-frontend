@@ -1,3 +1,5 @@
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="top-right" life="4500"></p-toast>
 
 <div class="p-grid">
   <div class="p-col">
@@ -21,7 +23,7 @@
               <td>{{ rowData.foodname }}</td>
               <td style="text-align:right" width="115px">
                 <button pButton type="button" icon="fas fa-edit" class="ui-button-success itembutton"></button>
-                <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger itembutton"></button>
+                <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger itembutton" (click)="deleteClick(rowData.id, rowData.foodname)"></button>
               </td>
             </tr>
           </ng-template>

@@ -62,7 +62,7 @@ export class WeightComponent implements OnInit {
      start = [];
      weight = [];
 
-     for (let i = 0; i < this.weights.length; i++) {
+     for (let i = this.weights.length - 1; i >= 0; i--) {
         const date = this.weights[i].weightdate.toString().slice(0, 10);
         dateLabels.push(date.substr(5) + '-' + date.substr(0, 4));
         goal.push(this.weightGoal);

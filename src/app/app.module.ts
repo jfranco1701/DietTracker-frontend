@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import {PanelModule} from 'primeng/panel';
-import {CardModule} from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
+import { CardModule } from 'primeng/card';
 import { AppComponent } from './app.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { HomeComponent } from './home/home.component';
@@ -11,7 +11,6 @@ import { LandingComponent } from './landing/landing.component';
 import { DatabaseadminComponent } from './databaseadmin/databaseadmin.component';
 import { MealComponent } from './meal/meal.component';
 import { WeightComponent } from './weight/weight.component';
-import { ChartComponent } from './chart/chart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -19,24 +18,24 @@ import { UsersComponent } from './users/users.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers';
 
-import {AccordionModule} from 'primeng/accordion';
-import {ListboxModule} from 'primeng/listbox';
-import {ButtonModule} from 'primeng/button';
+import { AccordionModule } from 'primeng/accordion';
+import { ListboxModule } from 'primeng/listbox';
+import { ButtonModule } from 'primeng/button';
 
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar';
 import { MealitemsComponent } from './mealitems/mealitems.component';
 
-import {TableModule} from 'primeng/table';
-import {ScrollPanelModule} from 'primeng/scrollpanel';
-import {ChartModule} from 'primeng/chart';
-import {DialogModule} from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ChartModule } from 'primeng/chart';
+import { DialogModule } from 'primeng/dialog';
 
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -47,10 +46,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     DatabaseadminComponent,
     MealComponent,
     WeightComponent,
-    ChartComponent,
     NotfoundComponent,
     UsersComponent,
-    MealitemsComponent,
+    MealitemsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -71,11 +69,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     MessagesModule,
     MessageModule,
     ToastModule,
-    ConfirmDialogModule,
+    ConfirmDialogModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
