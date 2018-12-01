@@ -1,3 +1,6 @@
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="top-right" life="4500"></p-toast>
+
 <div class="p-grid">
   <div class="p-col">
     <p-panel>
@@ -14,11 +17,11 @@
       <p-table [value]="weights">
         <ng-template pTemplate="body" let-weight>
           <tr>
-            <td>{{ weight.weightDate | date: 'MM/dd/yyyy' }}</td>
-            <td>{{ weight.weightAmt }} lbs</td>
+            <td>{{ weight.weightdate | date: 'MM/dd/yyyy' }}</td>
+            <td>{{ weight.userweight }} lbs</td>
             <td style="text-align:right" width="115px">
               <button pButton type="button" icon="fas fa-edit" class="ui-button-success weightbutton"></button>
-              <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger weightbutton"></button>
+              <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger weightbutton" (click)="deleteClick(weight.id, weight.weightdate)"></button>
             </td>
           </tr>
         </ng-template>
@@ -42,7 +45,7 @@
   </div>
   <p-footer>
     <button pButton type="button" label="Cancel" class="ui-button-secondary weightbutton" (click)="displayAdd = false"></button>
-    <button pButton type="button" label="Add" class="ui-button-primary weightbutton" (click)="addWeight()"></button>
+    <button pButton type="button" label="Add" class="ui-button-primary weightbutton"></button>
 
   </p-footer>
 </p-dialog>
