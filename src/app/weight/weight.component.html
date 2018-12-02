@@ -21,7 +21,13 @@
             <td>{{ weight.userweight }} lbs</td>
             <td style="text-align:right" width="115px">
               <button pButton type="button" icon="fas fa-edit" class="ui-button-success weightbutton"></button>
-              <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger weightbutton" (click)="deleteClick(weight.id, weight.weightdate)"></button>
+              <button
+                pButton
+                type="button"
+                icon="fas fa-trash-alt"
+                class="ui-button-danger weightbutton"
+                (click)="deleteClick(weight.id, weight.weightdate)"
+              ></button>
             </td>
           </tr>
         </ng-template>
@@ -32,22 +38,37 @@
 </div>
 
 <p-dialog [(visible)]="displayAdd" modal="true" resizable="false" closeOnEscape="false" [closable]="false">
-  <p-header> Header content here </p-header>
+  <p-header>Add Weight</p-header>
   <div style="min-height:150px;min-width:300px;padding-top:20px;">
-
-      <form #form="ngForm">
-          <label for="weightDate" style="display:block;margin-bottom:4px">Date</label>
-          <input id="weightDate" type="text" size="30" pInputText>
-
-          <label for="float-input" style="display:block;margin-bottom:4px">Weight</label>
-          <input id="float-input" type="text" size="30" pInputText pKeyFilter="num">
-      </form>
+    <form novalidate (ngSubmit)="onSubmit(weight)" [formGroup]="weight">
+      <div class="p-grid">
+        <div class="p-col-3">Date</div>
+        <div class="p-col-6">
+          <p-calendar name="date" formControlName="weightdate" appendTo="body" [showIcon]="true"></p-calendar>
+        </div>
+      </div>
+      <div class="error" *ngIf="weight.get('weightdate').hasError('required') && weight.get('weightdate').touched">
+        Date required
+      </div>
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Weight</div>
+        <div class="p-col-6">
+          <p-spinner name="weight" formControlName="userweight" size=5 [min]="1"></p-spinner>
+        </div>
+      </div>
+      <div class="error" *ngIf="weight.get('userweight').hasError('required') && weight.get('userweight').touched">
+        Weight is required
+      </div>
+      <div style="margin-top:40px;text-align:right;">
+        <button
+          pButton
+          type="button"
+          label="Cancel"
+          class="ui-button-secondary weightbutton"
+          (click)="displayAdd = false"
+        ></button>
+        <button pButton type="submit" [disabled]="weight.invalid" label="Add" class="ui-button-primary weightbutton"></button>
+      </div>
+    </form>
   </div>
-  <p-footer>
-    <button pButton type="button" label="Cancel" class="ui-button-secondary weightbutton" (click)="displayAdd = false"></button>
-    <button pButton type="button" label="Add" class="ui-button-primary weightbutton"></button>
-
-  </p-footer>
 </p-dialog>
-
-

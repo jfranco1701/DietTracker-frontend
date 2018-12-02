@@ -3,7 +3,8 @@ import { Weight } from '../models/weight';
 import { IWeight } from '../interfaces/IWeight';
 import { WeightService } from '../services/weight.service';
 import { ConfirmationService } from 'primeng/api';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-weight',
@@ -20,11 +21,13 @@ export class WeightComponent implements OnInit {
   dayStart: number;
   dayEnd: number;
   displayAdd: boolean;
+  weight: FormGroup;
 
   constructor(
     private weightService: WeightService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private fb: FormBuilder
   ) {
     this.options = {
       title: {
@@ -37,6 +40,9 @@ export class WeightComponent implements OnInit {
       }
     };
   }
+  onSubmit() {
+    console.log(this.weight.value, this.weight.valid);
+  }
 
   ngOnInit() {
     this.displayAdd = false;
@@ -48,27 +54,30 @@ export class WeightComponent implements OnInit {
     this.dayStart = 0;
     this.dayEnd = 0;
 
-
+    this.weight = this.fb.group({
+      userweight: ['', [Validators.required]],
+      weightdate: ['', [Validators.required]]
+    });
   }
 
   updateChart() {
-     let dateLabels: string[];
-     let goal: number[];
-     let start: number[];
-     let weight: number[];
+    let dateLabels: string[];
+    let goal: number[];
+    let start: number[];
+    let weight: number[];
 
-     dateLabels = [];
-     goal = [];
-     start = [];
-     weight = [];
+    dateLabels = [];
+    goal = [];
+    start = [];
+    weight = [];
 
-     for (let i = this.weights.length - 1; i >= 0; i--) {
-        const date = this.weights[i].weightdate.toString().slice(0, 10);
-        dateLabels.push(date.substr(5) + '-' + date.substr(0, 4));
-        goal.push(this.weightGoal);
-        start.push(this.weightStart);
-        weight.push(this.weights[i].userweight);
-     }
+    for (let i = this.weights.length - 1; i >= 0; i--) {
+      const date = this.weights[i].weightdate.toString().slice(0, 10);
+      dateLabels.push(date.substr(5) + '-' + date.substr(0, 4));
+      goal.push(this.weightGoal);
+      start.push(this.weightStart);
+      weight.push(this.weights[i].userweight);
+    }
 
     this.weightData = {
       labels: dateLabels,
@@ -80,22 +89,30 @@ export class WeightComponent implements OnInit {
           borderColor: '#000000'
         },
         {
-           label: 'Start Weight',
-           data: start,
-           fill: false,
+          label: 'Start Weight',
+          data: start,
+          fill: false,
           borderColor: '#ff0000'
         },
         {
-           label: 'Goal Weight',
-           data: goal,
-           fill: false,
-           borderColor: '#008000'
+          label: 'Goal Weight',
+          data: goal,
+          fill: false,
+          borderColor: '#008000'
         }
       ]
     };
   }
 
   showAdd() {
+    this.weight.markAsPristine();
+    this.weight.markAsUntouched();
+    if (this.weights.length > 0) {
+      this.weight.controls['userweight'].setValue(this.weights[0].userweight);
+    } else {
+      this.weight.controls['userweight'].setValue(100);
+    }
+    this.weight.controls['weightdate'].setValue(new Date);
     this.displayAdd = true;
   }
 
@@ -111,23 +128,21 @@ export class WeightComponent implements OnInit {
   }
 
   deleteWeight(id: number) {
-    this.weightService.deleteWeight(id)
-      .subscribe(res => {
-        }, err => {
-          console.log(err);
-          this.messageService.add({severity: 'error', summary: 'Error Message', detail: 'Failed to Delete Weight Entry'});
-        },
-        () => {
-          this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Weight Entry Deleted'});
-          this.getWeights();
-        }
-      );
+    this.weightService.deleteWeight(id).subscribe(
+      res => {},
+      err => {
+        console.log(err);
+        this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Failed to Delete Weight Entry' });
+      },
+      () => {
+        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Weight Entry Deleted' });
+        this.getWeights();
+      }
+    );
   }
 
   getWeights() {
-    this.weightService
-    .getWeights()
-    .subscribe(weights => {
+    this.weightService.getWeights().subscribe(weights => {
       this.weights = weights;
       this.updateChart();
     });

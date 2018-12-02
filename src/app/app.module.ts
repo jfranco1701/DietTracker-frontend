@@ -40,6 +40,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import {DropdownModule} from 'primeng/dropdown';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {DropdownModule} from 'primeng/dropdown';
   ],
   imports: [
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     PanelModule,
     CardModule,
