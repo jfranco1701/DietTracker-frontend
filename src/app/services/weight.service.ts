@@ -27,6 +27,19 @@ export class WeightService {
      catchError(this.handleError));
   }
 
+  addWeight(userId: number, userWeight: number, weightDate: Date): Observable<IWeight> {
+    const obj = {
+      userid: userId,
+      userweight: userWeight,
+      weightdate: weightDate.toISOString().slice(0, 10)
+    };
+
+    return this.http.post<IWeight>(this.urlDetail, obj).pipe(
+      retry(3),
+      tap(_ => console.log(`add weight.`)),
+      catchError(this.handleError));
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

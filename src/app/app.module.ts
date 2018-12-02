@@ -41,6 +41,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import {DropdownModule} from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FoodComponent } from './food/food.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     WeightComponent,
     NotfoundComponent,
     UsersComponent,
-    MealitemsComponent
+    MealitemsComponent,
+    FoodComponent
   ],
   imports: [
     BrowserAnimationsModule,

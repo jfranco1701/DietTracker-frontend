@@ -40,8 +40,10 @@ export class WeightComponent implements OnInit {
       }
     };
   }
+
   onSubmit() {
     console.log(this.weight.value, this.weight.valid);
+    this.addWeight(this.weight.controls['userweight'].value, this.weight.controls['weightdate'].value);
   }
 
   ngOnInit() {
@@ -137,6 +139,23 @@ export class WeightComponent implements OnInit {
       () => {
         this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Weight Entry Deleted' });
         this.getWeights();
+      }
+    );
+  }
+
+  addWeight(userWeight: number, weightDate: Date) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    this.weightService.addWeight(currentUser.userid, userWeight, weightDate).subscribe(
+      res => {},
+      err => {
+        console.log(err);
+        this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Failed to Add Weight Entry' });
+      },
+      () => {
+        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Weight Entry Added' });
+        this.getWeights();
+        this.displayAdd = false;
       }
     );
   }

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     this.currentUser.lastName = lastName;
     this.currentUser.joinDate = dateJoined;
     this.currentUser.username = token_decoded.username;
-    this.currentUser.userid = token_decoded.userid;
+    this.currentUser.userid = token_decoded.user_id;
 
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
   }

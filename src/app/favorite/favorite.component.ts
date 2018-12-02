@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FavoriteService } from '../services/favorite.service';
 import { IFavorite } from '../interfaces/IFavorite';
 import { ConfirmationService } from 'primeng/api';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-favorite',
@@ -13,11 +14,15 @@ import {MessageService} from 'primeng/api';
 export class FavoriteComponent implements OnInit {
   favorites: IFavorite[];
   cols: any[];
+  displayForm = false;
+  formHeader: string;
+  rowData;
 
   constructor(
     private favoriteService: FavoriteService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -27,6 +32,18 @@ export class FavoriteComponent implements OnInit {
     ];
 
     this.getFavorites();
+  }
+
+  editClick(rowData) {
+    this.rowData = rowData;
+    this.formHeader = 'Edit Favorite Item';
+    this.displayForm = true;
+  }
+
+  addClick() {
+    this.rowData = null;
+    this.formHeader = 'Add Favorite Item';
+    this.displayForm = true;
   }
 
   deleteClick(id: number, foodName: string) {

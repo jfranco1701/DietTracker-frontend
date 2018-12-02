@@ -2,7 +2,7 @@
 <p-toast position="top-right" life="4500"></p-toast>
 
 <div class="p-grid">
-  <div class="p-col">
+  <div class="p-col-4">
     <p-panel>
       <p-header>
         <table style="width:100%">
@@ -20,7 +20,6 @@
             <td>{{ weight.weightdate | date: 'MM/dd/yyyy' }}</td>
             <td>{{ weight.userweight }} lbs</td>
             <td style="text-align:right" width="115px">
-              <button pButton type="button" icon="fas fa-edit" class="ui-button-success weightbutton"></button>
               <button
                 pButton
                 type="button"
@@ -34,7 +33,7 @@
       </p-table>
     </p-panel>
   </div>
-  <div class="p-col"><p-chart type="line" [data]="weightData" [options]="options"></p-chart></div>
+  <div class="p-col-8"><p-chart type="line" [data]="weightData" [options]="options"></p-chart></div>
 </div>
 
 <p-dialog [(visible)]="displayAdd" modal="true" resizable="false" closeOnEscape="false" [closable]="false">
