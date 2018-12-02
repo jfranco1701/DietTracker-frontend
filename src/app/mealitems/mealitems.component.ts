@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MealItem } from '../models/mealitem';
 import { IMeal } from '../interfaces/IMeal';
 import { MealService } from '../services/meal.service';
 import { ConfirmationService } from 'primeng/api';
 import {MessageService} from 'primeng/api';
+
+
 
 @Component({
   selector: 'app-mealitems',
@@ -25,7 +26,7 @@ export class MealitemsComponent implements OnInit {
   constructor(
     private mealService: MealService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {

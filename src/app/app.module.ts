@@ -29,13 +29,17 @@ import { TableModule } from 'primeng/table';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ChartModule } from 'primeng/chart';
 import { DialogModule } from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import {SpinnerModule} from 'primeng/spinner';
 
 import { ToastModule } from 'primeng/toast';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -69,7 +73,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     MessagesModule,
     MessageModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    SpinnerModule,
+    InputTextModule,
+    DropdownModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

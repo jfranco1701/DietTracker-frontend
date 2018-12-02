@@ -8,7 +8,7 @@
           <b>{{ mealName }}</b>
         </td>
         <td style="text-align:right">
-          <button pButton type="button" class="ui-button-raised" icon="fas fa-plus" routerLink="/meal"></button>
+          <button pButton type="button" class="ui-button-raised" icon="fas fa-plus" routerLink="/meal" [queryParams]="{meal: mealName, mealdate: selectedMealDate.toISOString().slice(0,10)}" ></button>
         </td>
       </tr>
     </table>

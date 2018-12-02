@@ -6,7 +6,7 @@
     <p-panel>
       <p-header> <b>My Favorites</b> </p-header>
 
-      <p-table [columns]="cols" [value]="favorites" autoLayout="true" dataKey="name">
+      <p-table [columns]="cols" [value]="favorites" autoLayout="true" dataKey="id">
           <ng-template pTemplate="header" let-columns>
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">

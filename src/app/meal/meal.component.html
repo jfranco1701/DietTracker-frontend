@@ -1,63 +1,90 @@
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="top-right" life="4500"></p-toast>
+
 <div class="p-grid">
   <div class="p-col">
-    <p-panel>
-      <p-header> <b>Add Items - XX/XX/XXXX</b> </p-header>
+    <p-panel [style]="{'overflow':'visible'}">
+      <p-header>
+        <b>Add Meal Items</b>
+      </p-header>
 
-      <p-table [columns]="cols" [value]="mealItems" autoLayout="true" dataKey="name">
-          <ng-template pTemplate="header" let-columns>
-          </ng-template>
-          <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
-            <tr>
-              <td width="50px">
-                <a href="#" [pRowToggler]="rowData">
-                  <i
-                    [ngClass]="
-                      expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'
-                    "
-                  ></i>
-                </a>
-              </td>
-              <td>{{ rowData.qty }} x {{ rowData.name }}</td>
-              <td style="text-align:right" width="115px">
-                <button pButton type="button" icon="fas fa-edit" class="ui-button-success itembutton"></button>
-                <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger itembutton"></button>
-              </td>
+      <p-table [columns]="cols" [value]="mealItems" autoLayout="true" dataKey="id" [style]="{'overflow':'visible'}">
+        <ng-template pTemplate="header" let-columns>
+            <tr *ngIf="mealItems.length > 0">
+              <th></th>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th></th>
             </tr>
-          </ng-template>
-          <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
-            <tr>
-              <td [attr.colspan]="3">
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+          <tr>
+            <td width="50px">
+              <a href="#" [pRowToggler]="rowData">
+                <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
+              </a>
+            </td>
+            <td>
+                <input type="text" size="10" pInputText [(ngModel)]="rowData.mealdate"/>
+            </td>
+            <td>
+                <p-dropdown [options]="mealTypes" [(ngModel)]="rowData.mealtype" appendTo="body"></p-dropdown>
+            </td>
+            <td>
+                <p-spinner size="5" [(ngModel)]="rowData.quantity" [min]="1"></p-spinner>
+            </td>
+
+            <td>{{ rowData.foodname }}</td>
+
+            <td style="text-align:right" width="115px">
+              <button pButton type="button" icon="fas fa-edit" class="ui-button-success itembutton"></button>
+              <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger itembutton"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+          <tr>
+            <td [attr.colspan]="6">
                 <table>
-                  <tr>
-                    <td><b>Calories:</b> {{ rowData.calories }}</td>
-                    <td><b>Fat:</b> {{ rowData.fat }}</td>
-                    <td><b>Carbs:</b> {{ rowData.carbs }}</td>
-                    <td><b>Fiber:</b> {{ rowData.fiber }}</td>
-                    <td><b>Sugars:</b> {{ rowData.sugars }}</td>
-                    <td><b>Protein:</b> {{ rowData.protein }}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="6"><b>Measure:</b> {{ rowData.measure }}</td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="emptymessage">
-            <div style="margin-top:10px; text-align:center;">
-              No meal items have been added.
-            </div>
-          </ng-template>
-        </p-table>
-
-
-
-
-
-
-
-
-
+                    <tr>
+                      <td>
+                        <table>
+                          <tr>
+                            <td><b>Calories:</b> {{ rowData.calories }}</td>
+                            <td><b>Fat:</b> {{ rowData.fat }}</td>
+                            <td><b>Carbs:</b> {{ rowData.carbs }}</td>
+                            <td><b>Fiber:</b> {{ rowData.fiber }}</td>
+                            <td><b>Sugars:</b> {{ rowData.sugars }}</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table>
+                          <tr>
+                            <td><b>Protein:</b> {{ rowData.protein }}</td>
+                            <td><b>Measure:</b> {{ rowData.measure }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <div style="margin-top:10px; text-align:center;">No meal items have been added.</div>
+        </ng-template>
+      </p-table>
+      <p-footer *ngIf="mealItems.length > 0">
+          <button pButton type="button" label="Cancel" class="ui-button-secondary itembutton" (click)="cancelAdd()"></button>
+          <button pButton type="button" label="Save" class="ui-button-primary itembutton"></button>
+      </p-footer>
     </p-panel>
   </div>
   <div class="p-col">
@@ -69,6 +96,24 @@
     <div>
       <p-panel>
         <p-header> <b>Add Meal Items From Favorites</b> </p-header>
+
+        <p-table [columns]="favorites_cols" [value]="favorites" autoLayout="true" dataKey="id">
+          <ng-template pTemplate="header" let-columns> </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td>{{ rowData.foodname }}</td>
+              <td>
+                <button
+                  pButton
+                  type="button"
+                  icon="fas fa-edit"
+                  class="ui-button-success itembutton"
+                  (click)="addFromFavorite(rowData)"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
       </p-panel>
     </div>
   </div>
