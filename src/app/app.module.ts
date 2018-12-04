@@ -42,6 +42,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {DropdownModule} from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FoodComponent } from './food/food.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { HeaderComponent } from './layouts/header/header.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { FoodComponent } from './food/food.component';
     NotfoundComponent,
     UsersComponent,
     MealitemsComponent,
-    FoodComponent
+    FoodComponent,
+    HomeLayoutComponent,
+    LoginLayoutComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -7,13 +7,18 @@ import { UsersComponent } from './users/users.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { WeightComponent } from './weight/weight.component';
 import { MealComponent } from './meal/meal.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'favorites', component: FavoriteComponent },
-  { path: 'weighttracking', component: WeightComponent },
-  { path: 'meal', component: MealComponent },
+  { path: '',
+    component: HomeLayoutComponent, canActivate: [AuthGuardService],
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'favorites', component: FavoriteComponent },
+      { path: 'weighttracking', component: WeightComponent },
+      { path: 'meal', component: MealComponent },
+    ]},
   { path: '**', component: NotfoundComponent },
 ];
 

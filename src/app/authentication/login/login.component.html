@@ -1,31 +1,39 @@
-<div>
-  <div>
+<div class="p-grid p-align-center " style="height:100%">
+  <div class="p-col-8"></div>
+  <div class="p-col-3">
     <p-card>
-      <span>Welcome to DietTracker. Please login using your email address and password. If you do not have an account,
-        please <a routerLink="/register">register</a> to create one.</span>
-      <div>
-        Email Address
-      </div>
-      <div>
-        <input type="text" pInputText [(ngModel)]="user.username" />
-        <span *ngFor="let error of errors.username">
-          <br />{{ error }}
-        </span>
-      </div>
-      <div>
-        Password
-      </div>
-      <div>
-        <input type="password" pInputText [(ngModel)]="user.password" />
-        <span *ngFor="let error of errors.password"><br />
-          {{ error }}</span>
-      </div>
-      <div>
+      <p-header> <h1 align="center" style="padding-top:20px;">Welcome to DietTracker!</h1> </p-header>
+      <div style="height:500px;">
+        <div style="margin-bottom:15px;"><span>Please login using your email address and password.</span></div>
+        <div style="margin-bottom:25px;"><span> If you do not have an account, please <a routerLink="/register">register</a> to create one.</span></div>
+
+
+        <div>Email Address</div>
+        <div>
+          <input type="text" pInputText [(ngModel)]="user.username" style="width:250px;" />
+          <span *ngFor="let error of errors.username"> <br />{{ error }} </span>
+        </div>
+        <div style="margin-top:20px;">Password</div>
+        <div>
+          <input type="password" pInputText [(ngModel)]="user.password" />
+          <span *ngFor="let error of errors.password"
+            ><br />
+            {{ error }}</span
+          >
+        </div>
+        <div>
           <span *ngFor="let error of errors.non_field_errors">{{ error }}<br /></span>
-      </div>
-      <div>
-          <button routerLink="/register" pButton type="button" class="ui-button-info">Register</button>
-          <button pButton type="button" class="ui-button-primary" (click)="login()">Login</button>
+        </div>
+        <div style="margin-top:20px; margin-bottom:20px;">
+          <button
+            pButton
+            type="button"
+            class="ui-button-raised ui-button-rounded"
+            label="Login"
+            (click)="login()"
+            style="width:100px;"
+          ></button>
+        </div>
       </div>
     </p-card>
   </div>
