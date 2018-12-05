@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CaptchaModule } from 'primeng/captcha';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forChild(AuthenticationRoutes),
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   declarations: [LoginComponent, RegisterComponent],
 })

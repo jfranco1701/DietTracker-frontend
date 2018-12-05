@@ -1,55 +1,184 @@
 <div class="p-grid p-align-center " style="height:100%">
-    <div class="p-col-8"></div>
-    <div class="p-col-3">
-      <p-card>
-        <p-header> <h1 align="center" style="padding-top:20px;">DietTracker Registration</h1> </p-header>
-      <div style="height:500px;">
-      <div>
-        Email Address
-      </div>
-      <div>
-        <input type="text" pInputText [(ngModel)]="emailAddress" />
-      </div>
-      <div>
-        Confirm Email Address
-      </div>
-      <div>
-        <input type="text" pInputText [(ngModel)]="confirmEmailAddress" />
-      </div>
-      <div>
-        Password
-      </div>
-      <div>
-        <input type="password" pInputText [(ngModel)]="password" />
-      </div>
-      <div>
-        Confirm Password
-      </div>
-      <div>
-        <input type="password" pInputText [(ngModel)]="confirmPassword" />
-      </div>
-      <div>
-        First Name
-      </div>
-      <div>
-        <input type="text" pInputText [(ngModel)]="firstName" />
-      </div>
-      <div>
-        Last Name
-      </div>
-      <div>
-        <input type="text" pInputText [(ngModel)]="lastName" />
-      </div>
-      <div style="margin-top:20px;">
-          <ng-container *ngIf="recaptcha.render">
-              <p-captcha siteKey="6Ldv8ngUAAAAAA58h5b8-WKLAHNrK_tlhWkZXmHu" (onResponse)="showResponse($event)"></p-captcha>
-          </ng-container>
+  <div class="p-col-8"></div>
+  <div class="p-col-3">
+    <p-card>
+      <p-header> <h1 align="center" style="padding-top:20px;">DietTracker Registration</h1> </p-header>
+      <div style="height:600px; padding:20px;">
+        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+          <div formGroupName="emailGroup" novalidate>
+            <div>Email Address</div>
+            <div><input type="text" formControlName="email" pInputText style="width:300px;" /></div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('emailGroup')
+                  .get('email')
+                  .hasError('required') && registerForm.get('emailGroup').get('email').touched
+              "
+            >
+              Email address is required
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('emailGroup')
+                  .get('email')
+                  .hasError('email') && registerForm.get('emailGroup').get('email').touched
+              "
+            >
+              Email must be a valid email address
+            </div>
 
+            <div style="margin-top:20px;">Confirm Email Address</div>
+            <div><input type="text" formControlName="confirmEmail" pInputText style="width:300px;" /></div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('emailGroup')
+                  .get('confirmEmail')
+                  .hasError('required') && registerForm.get('emailGroup').get('confirmEmail').touched
+              "
+            >
+              Confirm Email address is required
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('emailGroup')
+                  .get('confirmEmail')
+                  .hasError('email') && registerForm.get('emailGroup').get('confirmEmail').touched
+              "
+            >
+              Email must be a valid email address
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('emailGroup')
+                  .get('confirmEmail')
+                  .hasError('notEqual') && registerForm.get('emailGroup').get('confirmEmail').touched
+              "
+            >
+              Email and Confirm Email do not match
+            </div>
+          </div>
+
+          <div formGroupName="passwordGroup" novalidate>
+            <div style="margin-top:20px;">Password</div>
+            <div><input type="text" formControlName="password" pInputText style="width:200px;" /></div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('passwordGroup')
+                  .get('password')
+                  .hasError('required') && registerForm.get('passwordGroup').get('password').touched
+              "
+            >
+              Password is required
+            </div>
+
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('passwordGroup')
+                  .get('password')
+                  .hasError('minlength') && registerForm.get('passwordGroup').get('password').touched
+              "
+            >
+              Password must be 8 characters or more
+            </div>
+            <div style="margin-top:20px;">Confirm Password</div>
+            <div><input type="text" formControlName="confirmPassword" pInputText style="width:200px;" /></div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('passwordGroup')
+                  .get('confirmPassword')
+                  .hasError('required') && registerForm.get('passwordGroup').get('confirmPassword').touched
+              "
+            >
+              Confirm Password is required
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('passwordGroup')
+                  .get('confirmPassword')
+                  .hasError('notEqual') && registerForm.get('passwordGroup').get('confirmPassword').touched
+              "
+            >
+              Password and Confirm Password do not match
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <ng-container *ngIf="recaptcha.render">
+              <p-captcha siteKey="6Ldv8ngUAAAAAA58h5b8-WKLAHNrK_tlhWkZXmHu" (onResponse)="showResponse($event)"></p-captcha>
+            </ng-container>
+          </div>
+
+          <div style="margin-top:40px;text-align:left;margin-bottom:10px">
+            <button routerLink="/home" pButton type="button" label="Cancel" class="ui-button-info formbutton"></button>
+            <button
+              pButton
+              type="submit"
+              [disabled]="registerForm.invalid"
+              label="Login"
+              class="ui-button-primary formbutton"
+            ></button>
+          </div>
+        </form>
       </div>
-      <div style="margin-top:20px;">
-        <button routerLink="/home" pButton type="button" class="ui-button-info">Cancel</button>
-        <button pButton type="button" class="ui-button-primary">Register</button>
-      </div>
-    </div>
     </p-card>
   </div>
+</div>
+
+<!--
+  <div>
+      Email Address
+    </div>
+    <div>
+      <input type="text" pInputText [(ngModel)]="emailAddress" />
+    </div>
+    <div>
+      Confirm Email Address
+    </div>
+    <div>
+      <input type="text" pInputText [(ngModel)]="confirmEmailAddress" />
+    </div>
+    <div>
+      Password
+    </div>
+    <div>
+      <input type="password" pInputText [(ngModel)]="password" />
+    </div>
+    <div>
+      Confirm Password
+    </div>
+    <div>
+      <input type="password" pInputText [(ngModel)]="confirmPassword" />
+    </div>
+    <div>
+      First Name
+    </div>
+    <div>
+      <input type="text" pInputText [(ngModel)]="firstName" />
+    </div>
+    <div>
+      Last Name
+    </div>
+    <div>
+      <input type="text" pInputText [(ngModel)]="lastName" />
+    </div>
+
+  </div>
+-->

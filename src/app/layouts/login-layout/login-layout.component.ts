@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-login-layout',
   template: `<div style="background-image: url('../assets/background.jpg'); background-size: cover; height:100vh;">
@@ -7,10 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class LoginLayoutComponent implements OnInit {
-
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

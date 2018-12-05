@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,27 @@ export class LoginComponent implements OnInit {
   public user: any;
   public errors: any = [];
   private currentUser: User;
+  loginForm: FormGroup;
 
-  constructor( public _authenticationService: AuthenticationService, private router: Router) { }
+  constructor( public _authenticationService: AuthenticationService,
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.user = {
       username: '',
       password: ''
     };
+
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+  onSubmit() {
+    console.log(this.loginForm.value, this.loginForm.valid);
   }
 
   login() {

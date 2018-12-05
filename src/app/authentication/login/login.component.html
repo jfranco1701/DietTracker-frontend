@@ -3,38 +3,57 @@
   <div class="p-col-3">
     <p-card>
       <p-header> <h1 align="center" style="padding-top:20px;">Welcome to DietTracker!</h1> </p-header>
-      <div style="height:500px;">
+      <div style="height:500px; padding:20px;">
         <div style="margin-bottom:15px;"><span>Please login using your email address and password.</span></div>
-        <div style="margin-bottom:25px;"><span> If you do not have an account, please <a routerLink="/register">register</a> to create one.</span></div>
-
-
-        <div>Email Address</div>
-        <div>
-          <input type="text" pInputText [(ngModel)]="user.username" style="width:250px;" />
-          <span *ngFor="let error of errors.username"> <br />{{ error }} </span>
+        <div style="margin-bottom:25px;">
+          <span> If you do not have an account, please <a routerLink="/register">register</a> to create one.</span>
         </div>
-        <div style="margin-top:20px;">Password</div>
-        <div>
-          <input type="password" pInputText [(ngModel)]="user.password" />
-          <span *ngFor="let error of errors.password"
-            ><br />
-            {{ error }}</span
-          >
-        </div>
-        <div>
-          <span *ngFor="let error of errors.non_field_errors">{{ error }}<br /></span>
-        </div>
-        <div style="margin-top:20px; margin-bottom:20px;">
-          <button
-            pButton
-            type="button"
-            class="ui-button-raised ui-button-rounded"
-            label="Login"
-            (click)="login()"
-            style="width:100px;"
-          ></button>
-        </div>
+        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+          <div>Email Address</div>
+          <div><input type="text" formControlName="email" pInputText style="width:300px;" /></div>
+          <div class="error" *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+            Email address is required
+          </div>
+          <div class="error" *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched">Email must be a valid email address</div>
+          <div style="margin-top:20px;">Password</div>
+          <div><input type="text" formControlName="password" pInputText /></div>
+          <div class="error" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+            Password is required
+          </div>
+          <div style="margin-top:40px;text-align:left;margin-bottom:10px">
+            <button pButton type="submit" [disabled]="loginForm.invalid" label="Login" class="ui-button-primary formbutton"></button>
+          </div>
+        </form>
       </div>
     </p-card>
   </div>
 </div>
+
+<!--
+  <div>Email Address</div>
+  <div>
+    <input type="text" pInputText [(ngModel)]="user.username" style="width:250px;" />
+    <span *ngFor="let error of errors.username"> <br />{{ error }} </span>
+  </div>
+  <div style="margin-top:20px;">Password</div>
+  <div>
+    <input type="password" pInputText [(ngModel)]="user.password" />
+    <span *ngFor="let error of errors.password"
+      ><br />
+      {{ error }}</span
+    >
+  </div>
+  <div>
+    <span *ngFor="let error of errors.non_field_errors">{{ error }}<br /></span>
+  </div>
+  <div style="margin-top:20px; margin-bottom:20px;">
+    <button
+      pButton
+      type="button"
+      class="ui-button-raised ui-button-rounded"
+      label="Login"
+      (click)="login()"
+      style="width:100px;"
+    ></button>
+  </div>
+-->
