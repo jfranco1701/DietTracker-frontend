@@ -1,12 +1,47 @@
+<p-confirmDialog [rejectVisible]="false" acceptLabel="Ok"></p-confirmDialog>
+
 <div class="p-grid p-align-center " style="height:100%">
   <div class="p-col-8"></div>
   <div class="p-col-3">
     <p-card>
       <p-header> <h1 align="center" style="padding-top:20px;">DietTracker Registration</h1> </p-header>
-      <div style="height:600px; padding:20px;">
+      <div style="min-height:600px; padding-left:20px;padding-right:20px;">
         <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+          <div class="error" *ngIf="errors.non_field_errors" style="margin-bottom:10px;">
+            <span *ngFor="let error of errors.non_field_errors">{{ error }}<br /></span>
+          </div>
+
+          <div formGroupName="nameGroup" novalidate>
+            <div>First Name</div>
+            <div><input type="text" formControlName="firstName" pInputText style="width:300px;" autofocus /></div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('nameGroup')
+                  .get('firstName')
+                  .hasError('required') && registerForm.get('nameGroup').get('firstName').touched
+              "
+            >
+              First name is required
+            </div>
+
+            <div style="margin-top:20px;">Last Name</div>
+            <div><input type="text" formControlName="lastName" pInputText style="width:300px;" /></div>
+            <div
+              class="error"
+              *ngIf="
+                registerForm
+                  .get('nameGroup')
+                  .get('lastName')
+                  .hasError('required') && registerForm.get('nameGroup').get('lastName').touched
+              "
+            >
+              Last name is required
+            </div>
+          </div>
           <div formGroupName="emailGroup" novalidate>
-            <div>Email Address</div>
+            <div style="margin-top:20px;">Email Address</div>
             <div><input type="text" formControlName="email" pInputText style="width:300px;" /></div>
             <div
               class="error"
@@ -29,6 +64,9 @@
               "
             >
               Email must be a valid email address
+            </div>
+            <div class="error" *ngIf="errors.email" style="margin-bottom:10px;">
+                <span *ngFor="let error of errors.email">{{ error }}<br /></span>
             </div>
 
             <div style="margin-top:20px;">Confirm Email Address</div>
@@ -132,7 +170,7 @@
               pButton
               type="submit"
               [disabled]="registerForm.invalid"
-              label="Login"
+              label="Register"
               class="ui-button-primary formbutton"
             ></button>
           </div>
@@ -141,44 +179,3 @@
     </p-card>
   </div>
 </div>
-
-<!--
-  <div>
-      Email Address
-    </div>
-    <div>
-      <input type="text" pInputText [(ngModel)]="emailAddress" />
-    </div>
-    <div>
-      Confirm Email Address
-    </div>
-    <div>
-      <input type="text" pInputText [(ngModel)]="confirmEmailAddress" />
-    </div>
-    <div>
-      Password
-    </div>
-    <div>
-      <input type="password" pInputText [(ngModel)]="password" />
-    </div>
-    <div>
-      Confirm Password
-    </div>
-    <div>
-      <input type="password" pInputText [(ngModel)]="confirmPassword" />
-    </div>
-    <div>
-      First Name
-    </div>
-    <div>
-      <input type="text" pInputText [(ngModel)]="firstName" />
-    </div>
-    <div>
-      Last Name
-    </div>
-    <div>
-      <input type="text" pInputText [(ngModel)]="lastName" />
-    </div>
-
-  </div>
--->

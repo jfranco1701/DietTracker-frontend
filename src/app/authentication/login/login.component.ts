@@ -34,13 +34,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.loginForm.value, this.loginForm.valid);
+    this.login(this.loginForm.value.email, this.loginForm.value.password);
   }
 
-  login() {
+  login(username: string, password: string) {
     console.log('logging in ' + this.user.username);
 
 
-    this._authenticationService.login({'username': this.user.username, 'password': this.user.password }).subscribe(
+    this._authenticationService.login({'username': username, 'password': password }).subscribe(
         data => {
           console.log(data);
           this.updateData(data['token'], data['lastName'], data['firstName'], data['dateJoined']);

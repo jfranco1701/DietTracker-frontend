@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { CaptchaModule } from 'primeng/captcha';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ConfirmDialogModule
   ],
   declarations: [LoginComponent, RegisterComponent],
 })

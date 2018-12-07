@@ -9,16 +9,25 @@
           <span> If you do not have an account, please <a routerLink="/register">register</a> to create one.</span>
         </div>
         <form novalidate (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+          <div class="error" *ngIf="errors.non_field_errors" style="margin-bottom:10px;">
+              <span *ngFor="let error of errors.non_field_errors">{{ error }}<br/></span>
+          </div>
           <div>Email Address</div>
           <div><input type="text" formControlName="email" pInputText style="width:300px;" /></div>
           <div class="error" *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
             Email address is required
           </div>
           <div class="error" *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched">Email must be a valid email address</div>
+          <div class="error" *ngIf="errors.username">
+            <span *ngFor="let error of errors.username"> <br />{{ error }} </span>
+          </div>
           <div style="margin-top:20px;">Password</div>
           <div><input type="text" formControlName="password" pInputText /></div>
           <div class="error" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
             Password is required
+          </div>
+          <div class="error" *ngIf="errors.password">
+            <span *ngFor="let error of errors.password"> <br />{{ error }} </span>
           </div>
           <div style="margin-top:40px;text-align:left;margin-bottom:10px">
             <button pButton type="submit" [disabled]="loginForm.invalid" label="Login" class="ui-button-primary formbutton"></button>

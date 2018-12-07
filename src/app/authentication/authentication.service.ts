@@ -25,8 +25,12 @@ export class AuthenticationService {
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
   public login(user) {
     console.log('login ' + JSON.stringify(user));
-
     return this.http.post(this.locationService.prepareExternalUrl('/api/login/'), JSON.stringify(user), this.httpOptions);
+  }
+
+  public register(newUser) {
+    console.log('register ' + JSON.stringify(newUser));
+    return this.http.post(this.locationService.prepareExternalUrl('/api/register/'), JSON.stringify(newUser), this.httpOptions);
   }
 
   // Refreshes the JWT token, to extend the time the user is logged in
