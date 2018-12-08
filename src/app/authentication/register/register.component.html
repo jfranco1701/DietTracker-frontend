@@ -158,10 +158,11 @@
             </div>
           </div>
 
-          <div style="margin-top:20px;">
-            <ng-container *ngIf="recaptcha.render">
-              <p-captcha siteKey="6Ldv8ngUAAAAAA58h5b8-WKLAHNrK_tlhWkZXmHu" (onResponse)="showResponse($event)"></p-captcha>
-            </ng-container>
+
+          <div style="margin-top:20px;"  *ngIf="recaptcha.render">
+           <!-- <ng-container > -->
+              <p-captcha siteKey="6Ldv8ngUAAAAAA58h5b8-WKLAHNrK_tlhWkZXmHu" (onResponse)="showResponse($event)" (onExpire)="expireCaptcha()"></p-captcha>
+           <!-- </ng-container> -->
           </div>
 
           <div style="margin-top:40px;text-align:left;margin-bottom:10px">
@@ -169,7 +170,7 @@
             <button
               pButton
               type="submit"
-              [disabled]="registerForm.invalid"
+              [disabled]="registerForm.invalid || !captchaValid"
               label="Register"
               class="ui-button-primary formbutton"
             ></button>

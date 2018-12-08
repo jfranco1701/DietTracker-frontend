@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   lastName: string;
   firstName: string;
   recaptcha: any;
+  captchaValid: boolean;
+  captchaResponse: string;
 
   registerForm: FormGroup;
 
@@ -32,6 +34,13 @@ export class RegisterComponent implements OnInit {
 
   showResponse(event) {
     // call to a backend to verify against recaptcha with private key
+    this.captchaResponse = event.response;
+    this.captchaValid = true;
+  }
+
+  expireCaptcha() {
+    this.captchaResponse = '';
+    this.captchaValid = false;
   }
 
   ngOnInit() {
@@ -57,6 +66,9 @@ export class RegisterComponent implements OnInit {
         validator: this.checkPasswords('password', 'confirmPassword')
       })
     });
+
+    this.captchaValid = false;
+    this.captchaResponse = '';
   }
 
   checkEmails(emailField: string, confirmEmailField: string) {
@@ -91,16 +103,17 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get('emailGroup').get('email').value,
         this.registerForm.get('passwordGroup').get('password').value,
         this.registerForm.get('nameGroup').get('firstName').value,
-        this.registerForm.get('nameGroup').get('lastName').value
+        this.registerForm.get('nameGroup').get('lastName').value,
+        this.captchaResponse
     );
   }
 
-  register(emailAddress: string, password: string, firstName: string, lastName: string) {
-    console.log('Register: ' + emailAddress + ', ' + password + ', ' + firstName + ' ' + lastName);
+  register(emailAddress: string, password: string, firstName: string, lastName: string, captchaResponse: string) {
+    console.log('Register: ' + emailAddress + ', ' + password + ', ' + firstName + ' ' + lastName + ' ' + captchaResponse);
 
     this._authenticationService.register({
         'username': emailAddress, 'first_name': firstName, 'password': password,
-        'email': emailAddress, 'last_name': lastName
+        'email': emailAddress, 'last_name': lastName, 'captcharesponse': captchaResponse
     }).subscribe(
         data => {
           console.log(data);
@@ -124,6 +137,11 @@ export class RegisterComponent implements OnInit {
               this.errors.email[index] = 'Email address is already in use.  Please select another.';
             }
           }
+
+          this.recaptcha.reset();
+          this.captchaValid = false;
+          this.captchaResponse = '';
+
           console.log(this.errors);
         });
   }
