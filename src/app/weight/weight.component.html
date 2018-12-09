@@ -1,7 +1,7 @@
 <p-confirmDialog></p-confirmDialog>
 <p-toast position="top-right" life="4500"></p-toast>
 
-<div class="p-grid">
+<div class="p-grid" style="margin-top:20px;">
   <div class="p-col-4">
     <p-panel>
       <p-header>
@@ -30,10 +30,13 @@
             </td>
           </tr>
         </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <div style="margin-top:10px;margin-bottom:10px; text-align:center;">None added</div>
+        </ng-template>
       </p-table>
     </p-panel>
   </div>
-  <div class="p-col-8"><p-chart type="line" [data]="weightData" [options]="options"></p-chart></div>
+  <div class="p-col-8" style="background-color: white; margin-top:8px;"><p-chart type="line" [data]="weightData" [options]="options"></p-chart></div>
 </div>
 
 <p-dialog [(visible)]="displayAdd" modal="true" resizable="false" closeOnEscape="false" [closable]="false">

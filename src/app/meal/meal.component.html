@@ -1,7 +1,7 @@
 <p-confirmDialog></p-confirmDialog>
 <p-toast position="top-right" life="4500"></p-toast>
 
-<div class="p-grid">
+<div class="p-grid" style="margin-top:20px;">
   <div class="p-col">
     <p-panel [style]="{'overflow':'visible'}">
       <p-header>
@@ -78,7 +78,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
-          <div style="margin-top:10px; text-align:center;">No meal items have been added.</div>
+          <div style="margin-top:10px;margin-bottom:10px;text-align:center;">No meal items have been added.</div>
         </ng-template>
       </p-table>
       <p-footer *ngIf="mealItems.length > 0">

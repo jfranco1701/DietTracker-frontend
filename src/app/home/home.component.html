@@ -36,7 +36,7 @@
 
       <div>
         <p-card title="Daily Totals">
-          <table>
+          <table *ngIf="mealTotals">
             <tr>
               <td style="width:100px;">Calories:</td>
               <td style="width:80px; text-align: end;">{{ mealTotals.total_calories.toFixed(2) }}</td>

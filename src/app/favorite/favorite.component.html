@@ -1,7 +1,7 @@
 <p-confirmDialog></p-confirmDialog>
 <p-toast position="top-right" life="4500"></p-toast>
 
-<div class="p-grid">
+<div class="p-grid" style="margin-top:20px;">
   <div class="p-col">
     <p-panel>
       <p-header>
@@ -29,14 +29,7 @@
               </a>
             </td>
             <td>{{ rowData.foodname }}</td>
-            <td style="text-align:right" width="115px">
-              <button
-                pButton
-                type="button"
-                icon="fas fa-edit"
-                class="ui-button-success formbutton"
-                (click)="editClick(rowData)"
-              ></button>
+            <td style="text-align:right" width="70px">
               <button
                 pButton
                 type="button"
@@ -82,7 +75,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
-          <div style="margin-top:10px; text-align:center;">No favorite items have been added.</div>
+          <div style="margin-top:10px;margin-bottom:10px; text-align:center;">No favorite items have been added.</div>
         </ng-template>
       </p-table>
     </p-panel>
@@ -91,5 +84,98 @@
 
 <p-dialog [(visible)]="displayForm" modal="true" resizable="false" closeOnEscape="false" [closable]="false">
   <p-header>{{formHeader}}</p-header>
-  <app-food [editData] = "rowData" (childEvent)="displayForm=!$event"></app-food>
+  <div style="min-height:150px;min-width:400px;padding-top:20px;padding-left:20px;" *ngIf="foodForm">
+    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="foodForm">
+      <div class="p-grid">
+        <div class="p-col-3">Food Name:</div>
+        <div class="p-col-6">
+          <input type="text" formControlName="foodname" pInputText />
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('foodname').hasError('required') && foodForm.get('foodname').touched">
+        Food name is required
+      </div>
+
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Calories:</div>
+        <div class="p-col-6">
+          <p-spinner size="6" formControlName="calories" [step]="0.1" [min]="0"></p-spinner>
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('calories').hasError('required') && foodForm.get('calories').touched">
+        Calories is required
+      </div>
+
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Fat:</div>
+        <div class="p-col-6">
+          <p-spinner size="6" formControlName="fat"  [step]="0.1" [min]="0"></p-spinner>
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('fat').hasError('required') && foodForm.get('fat').touched">
+        Fat is required
+      </div>
+
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Carbs:</div>
+        <div class="p-col-6">
+          <p-spinner size="6" formControlName="carbs" [step]="0.1" [min]="0"></p-spinner>
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('carbs').hasError('required') && foodForm.get('carbs').touched">
+        Carbs is required
+      </div>
+
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Fiber:</div>
+        <div class="p-col-6">
+          <p-spinner size="6"  formControlName="fiber" [step]="0.1" [min]="0"></p-spinner>
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('fiber').hasError('required') && foodForm.get('fiber').touched">
+        Fiber is required
+      </div>
+
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Sugars:</div>
+        <div class="p-col-6">
+          <p-spinner size="6"  formControlName="sugars" [step]="0.1" [min]="0"></p-spinner>
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('sugars').hasError('required') && foodForm.get('sugars').touched">
+        Sugars is required
+      </div>
+
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Protein:</div>
+        <div class="p-col-6">
+          <p-spinner size="6"  formControlName="protein"  [step]="0.1" [min]="0"></p-spinner>
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('protein').hasError('required') && foodForm.get('protein').touched">
+        Protein is required
+      </div>
+
+      <div class="p-grid" style="margin-top:10px;">
+        <div class="p-col-3">Measure:</div>
+        <div class="p-col-6">
+          <input type="text"  formControlName="measure"  pInputText />
+        </div>
+      </div>
+      <div class="error" *ngIf="foodForm.get('measure').hasError('required') && foodForm.get('measure').touched">
+        Measure is required
+      </div>
+
+      <div style="margin-top:40px;text-align:right;margin-bottom:10px">
+        <button
+          pButton
+          type="button"
+          label="Cancel"
+          class="ui-button-secondary formbutton"
+          (click)="closeForm()"
+        ></button>
+        <button pButton type="submit" [disabled]="foodForm.invalid" label="Add" class="ui-button-primary formbutton"></button>
+      </div>
+    </form>
+  </div>
 </p-dialog>

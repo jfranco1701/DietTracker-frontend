@@ -31,7 +31,31 @@ export class FavoriteService {
      catchError(this.handleError));
   }
 
+  addFavorite(userId: number, foodName: string, caloriesCount: number, fatCount: number, carbsCount: number, fiberCount: number,
+    sugarsCount: number, proteinCount: number, measureAmt: string): Observable<IFavorite> {
+    const obj = {
+      userid: userId,
+      foodname: foodName,
+      calories: caloriesCount,
+      fat: fatCount,
+      carbs: carbsCount,
+      protein: proteinCount,
+      fiber: fiberCount,
+      sugars: sugarsCount,
+      measure: measureAmt
+    };
+
+    console.log('posting now to ' + this.urlDetail);
+    console.log(obj);
+
+    return this.http.post<IFavorite>(this.urlDetail, obj).pipe(
+      retry(3),
+      tap(_ => console.log(`add favorite.`)),
+      catchError(this.handleError));
+  }
+
   handleError(error) {
+    console.log('errror');
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // client-side error
