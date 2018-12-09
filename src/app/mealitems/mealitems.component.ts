@@ -80,4 +80,6 @@ export class MealitemsComponent implements OnInit {
       this.meals = meals;
     });
   }
+
+
 }

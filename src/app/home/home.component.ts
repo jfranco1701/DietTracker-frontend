@@ -18,6 +18,7 @@ import { MessageService } from 'primeng/api';
 })
 export class HomeComponent implements OnInit {
   mealTotals: IMealTotals;
+  mostConsumed: any[];
   favorites_cols: any[];
   topConsumed: TopConsumed[];
   mealDate: Date;
@@ -53,6 +54,7 @@ export class HomeComponent implements OnInit {
     this.addItemType = '';
 
     this.getMealTotals();
+    this.getMostConsumed();
 
     this.favorites_cols = [
       { field: 'foodname', header: ''}
@@ -66,10 +68,12 @@ export class HomeComponent implements OnInit {
     this.mealItemsToAdd = [];
     this.addItemType = event;
     this.displayForm = true;
+    this.getMostConsumed();
   }
 
   deleteItemChange(event) {
     this.getMealTotals();
+    this.getMostConsumed();
   }
 
   getMealTotals() {
@@ -78,6 +82,16 @@ export class HomeComponent implements OnInit {
     .getMealTotals(this.mealDate)
     .subscribe(mealTotals => {
       this.mealTotals = mealTotals;
+    });
+  }
+
+  getMostConsumed() {
+    this.mealService
+    .getMostConsumed()
+    .subscribe(consumed => {
+      this.mostConsumed = consumed;
+
+      console.log(this.mostConsumed);
     });
   }
 

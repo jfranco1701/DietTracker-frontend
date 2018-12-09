@@ -26,6 +26,9 @@ export class MealService {
     return this.http.get<IMealTotals>(this.urlDetail + 'totals/?mealdate=' + mealDate.toISOString().slice(0, 10));
   }
 
+  getMostConsumed(): Observable<any> {
+    return this.http.get<any>(this.urlDetail + 'mostconsumed/');
+  }
 
   deleteMeal(id): Observable<any> {
     return this.http.delete<any>(this.urlDetail + id + '/').pipe(
