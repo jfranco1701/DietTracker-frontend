@@ -1,74 +1,151 @@
-  <div style="margin-top:20px;margin-bottom:20px;">
-    <div class="dateselect">
-      <p-button icon="fas fa-arrow-left" (onClick)="prevClick()"></p-button>
-      <p-calendar class="calendar" showIcon="true" showButtonBar="true" [(ngModel)]="mealDate" readonlyInput="true" (onSelect)="dateSelect()" (onClearClick)="clearClick()"></p-calendar>
-      <p-button icon="fas fa-arrow-right" (onClick)="nextClick()"> </p-button>
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="top-right" life="4500"></p-toast>
+
+<div style="margin-top:20px;margin-bottom:20px;">
+  <div class="dateselect">
+    <p-button icon="fas fa-arrow-left" (onClick)="prevClick()"></p-button>
+    <p-calendar
+      class="calendar"
+      showIcon="true"
+      showButtonBar="true"
+      [(ngModel)]="mealDate"
+      readonlyInput="true"
+      (onSelect)="dateSelect()"
+      (onClearClick)="clearClick()"
+    ></p-calendar>
+    <p-button icon="fas fa-arrow-right" (onClick)="nextClick()"> </p-button>
+  </div>
+</div>
+<div class="p-grid">
+  <div class="p-col-8">
+    <div>
+      <app-mealitems [mealName]="'Breakfast'" [mealDate]="mealDate" (eventAddItem)="addItemChange($event)" (eventDeleteItem)="deleteItemChange($event)"></app-mealitems>
+    </div>
+    <div style="margin-top:10px;">
+      <app-mealitems [mealName]="'Lunch'" [mealDate]="mealDate" (eventAddItem)="addItemChange($event)"></app-mealitems>
+    </div>
+    <div style="margin-top:10px;">
+      <app-mealitems [mealName]="'Dinner'" [mealDate]="mealDate" (eventAddItem)="addItemChange($event)"></app-mealitems>
+    </div>
+    <div style="margin-top:10px;">
+      <app-mealitems [mealName]="'Snack'" [mealDate]="mealDate" (eventAddItem)="addItemChange($event)"></app-mealitems>
     </div>
   </div>
-  <div class="p-grid">
-    <div class="p-col-8">
-      <div><app-mealitems [mealName]="'Breakfast'" [mealDate]="mealDate"></app-mealitems></div>
-      <div style="margin-top:10px;"><app-mealitems [mealName]="'Lunch'" [mealDate]="mealDate"></app-mealitems></div>
-      <div style="margin-top:10px;"><app-mealitems [mealName]="'Dinner'" [mealDate]="mealDate"></app-mealitems></div>
-      <div style="margin-top:10px;"><app-mealitems [mealName]="'Snack'" [mealDate]="mealDate"></app-mealitems></div>
+  <div class="p-col-4">
+    <div style="text-align:center">
+      <button
+        pButton
+        type="button"
+        class="ui-button-raised ui-button-rounded"
+        label="My Favorites"
+        style="width:250px;"
+        routerLink="/favorites"
+      ></button>
     </div>
-    <div class="p-col-4">
-      <div style="text-align:center">
-        <button
-          pButton
-          type="button"
-          class="ui-button-raised ui-button-rounded"
-          label="My Favorites"
-          style="width:250px;"
-          routerLink="/favorites"
-        ></button>
-      </div>
-      <div style="margin-top:20px; margin-bottom:20px; text-align:center">
-        <button
-          pButton
-          type="button"
-          class="ui-button-raised ui-button-rounded"
-          label="Weight Tracking"
-          style="width:250px;"
-          routerLink="/weighttracking"
-        ></button>
-      </div>
+    <div style="margin-top:20px; margin-bottom:20px; text-align:center">
+      <button
+        pButton
+        type="button"
+        class="ui-button-raised ui-button-rounded"
+        label="Weight Tracking"
+        style="width:250px;"
+        routerLink="/weighttracking"
+      ></button>
+    </div>
 
-      <div>
-        <p-card title="Daily Totals">
-          <table *ngIf="mealTotals">
-            <tr>
-              <td style="width:100px;">Calories:</td>
-              <td style="width:80px; text-align: end;">{{ mealTotals.total_calories.toFixed(2) }}</td>
-            </tr>
-            <tr>
-              <td style="width:100px;">Protein:</td>
-              <td style="width:80px; text-align: end;">{{ mealTotals.total_protein.toFixed(2) }}</td>
-            </tr>
-            <tr>
-              <td style="width:100px;">Fat:</td>
-              <td style="width:80px; text-align: end;">{{ mealTotals.total_fat.toFixed(2) }}</td>
-            </tr>
-            <tr>
-              <td style="width:100px;">Sugars:</td>
-              <td style="width:80px; text-align: end;">{{ mealTotals.total_sugars.toFixed(2) }}</td>
-            </tr>
-            <tr>
-              <td style="width:100px;">Fiber:</td>
-              <td style="width:80px; text-align: end;">{{ mealTotals.total_fiber.toFixed(2) }}</td>
-            </tr>
-          </table>
-        </p-card>
-      </div>
+    <div>
+      <p-card title="Daily Totals">
+        <table *ngIf="mealTotals">
+          <tr>
+            <td style="width:100px;">Calories:</td>
+            <td style="width:80px; text-align: end;">{{ mealTotals.total_calories.toFixed(2) }}</td>
+          </tr>
+          <tr>
+            <td style="width:100px;">Protein:</td>
+            <td style="width:80px; text-align: end;">{{ mealTotals.total_protein.toFixed(2) }}</td>
+          </tr>
+          <tr>
+            <td style="width:100px;">Fat:</td>
+            <td style="width:80px; text-align: end;">{{ mealTotals.total_fat.toFixed(2) }}</td>
+          </tr>
+          <tr>
+            <td style="width:100px;">Sugars:</td>
+            <td style="width:80px; text-align: end;">{{ mealTotals.total_sugars.toFixed(2) }}</td>
+          </tr>
+          <tr>
+            <td style="width:100px;">Fiber:</td>
+            <td style="width:80px; text-align: end;">{{ mealTotals.total_fiber.toFixed(2) }}</td>
+          </tr>
+        </table>
+      </p-card>
+    </div>
 
-      <div style="margin-top:20px;">
-        <p-card title="Top Consumed Meal Items" subtitle="Last 30 Days">
-          <p-scrollPanel [style]="{ width: '100%', height: '200px' }">
-            <div style="line-height:1.5">
-              <div *ngFor="let item of topConsumed">{{ item.total }} x {{ item.name }}</div>
-            </div>
-          </p-scrollPanel>
-        </p-card>
+    <div style="margin-top:20px;">
+      <p-card title="Top Consumed Meal Items" subtitle="Last 30 Days">
+        <p-scrollPanel [style]="{ width: '100%', height: '200px' }">
+          <div style="line-height:1.5">
+            <div *ngFor="let item of topConsumed">{{ item.total }} x {{ item.name }}</div>
+          </div>
+        </p-scrollPanel>
+      </p-card>
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="displayForm" modal="true" resizable="false" closeOnEscape="false" [closable]="false">
+  <p-header><b>Add Meal Items</b></p-header>
+  <div style="min-height:600px;min-width:800px;padding-left:20px;padding-right:20px;">
+
+    <div class="p-grid">
+      <div class="p-col" style="margin-right:10px;">
+        <div style="margin-top:20px;">
+          <h4>Items to Add</h4>
+        </div>
+
+        <p-table [columns]="favorites_cols" [value]="mealItemsToAdd" autoLayout="true" dataKey="id">
+          <ng-template pTemplate="header" let-columns> </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td>{{ rowData.foodname }}</td>
+              <td style="width:58px;">
+                  <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger" (click)="mealItemsAddDeleteClick(rowData.foodname)"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+              <div style="margin-top:10px; text-align:center;">No meal items have been added</div>
+            </ng-template>
+        </p-table>
+      </div>
+      <div class="p-col" style="margin-left:10px;">
+          <div><h4>Add From Item Search</h4></div>
+          <div>
+            Item Name
+          </div>
+          <div>
+              <input class="itemsearch" type="text" pInputText /><button pButton type="button" label="Search"></button>
+          </div>
+          <div style="margin-top:40px;"><h4>Add From Favorites</h4></div>
+
+        <p-table [columns]="favorites_cols" [value]="favorites" autoLayout="true" dataKey="id">
+          <ng-template pTemplate="header" let-columns> </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td>{{ rowData.foodname }}</td>
+              <td style="width:58px;">
+                  <button pButton type="button" icon="fas fa-plus" class="ui-button-primary" (click)="addFavoritesClick(rowData)"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+              <div style="margin-top:10px; text-align:center;">No favorite items have been added</div>
+            </ng-template>
+        </p-table>
       </div>
     </div>
   </div>
+  <div style="margin-top:40px;text-align:right;margin-bottom:10px">
+    <button pButton type="button" label="Cancel" class="ui-button-secondary formbutton" (click)="addMealItemsCancelClick()"></button>
+    <button pButton type="button" label="Add" class="ui-button-primary formbutton" (click)="addMealItemsSaveClick()"></button>
+  </div>
+</p-dialog>

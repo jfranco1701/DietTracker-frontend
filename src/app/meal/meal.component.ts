@@ -7,6 +7,7 @@ import {SelectItem} from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import {MessageService} from 'primeng/api';
 import { Router } from '@angular/router';
+import { MealService } from '../services/meal.service';
 
 @Component({
   selector: 'app-meal',
@@ -24,9 +25,11 @@ export class MealComponent implements OnInit {
   mealDate: Date;
   mealTypes: SelectItem[];
   meal: IMeal;
+  displayForm: boolean;
 
   constructor(
     private favoriteService: FavoriteService,
+    private mealService: MealService,
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
@@ -34,6 +37,8 @@ export class MealComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.displayForm = false;
+
     this.cols = [
       { field: 'mealdate', header: 'Date'},
       { field: 'mealtype', header: 'Meal Type'},
@@ -89,8 +94,22 @@ export class MealComponent implements OnInit {
       this.mealItems.push(this.meal);
   }
 
-  addMealItemFavorite(id: number) {
+  addMeal() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
+
+
+    // this.mealService.addMeal(currentUser.userid, foodName, caloriesCount, fatCount,
+    //   carbsCount, fiberCount, sugarsCount, proteinCount, measureAmt).subscribe(
+    //     res => {},
+    //     err => {
+    //       console.log(err);
+    //       this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Failed to Add Favorite' });
+    //     },
+    //     () => {
+    //       this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Favorite Added' });
+    //     }
+    //   );
   }
 
   cancelAdd() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IMeal } from '../interfaces/IMeal';
 import { MealService } from '../services/meal.service';
 import { ConfirmationService } from 'primeng/api';
@@ -23,6 +23,10 @@ export class MealitemsComponent implements OnInit {
     this.getMeals();
   }
 
+  @Output() eventAddItem = new EventEmitter();
+
+  @Output() eventDeleteItem = new EventEmitter();
+
   constructor(
     private mealService: MealService,
     private confirmationService: ConfirmationService,
@@ -38,6 +42,10 @@ export class MealitemsComponent implements OnInit {
     this.getMeals();
   }
 
+  addClick() {
+    this.eventAddItem.emit(this.mealName);
+  }
+
   deleteClick(id, foodName) {
     this.confirmationService.confirm({
       message: 'Delete ' + foodName + '?',
@@ -45,6 +53,7 @@ export class MealitemsComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.deleteMeal(id);
+
       }
     });
   }
@@ -59,6 +68,7 @@ export class MealitemsComponent implements OnInit {
         () => {
           this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Food Item Deleted'});
           this.getMeals();
+          this.eventDeleteItem.emit(true);
         }
       );
   }

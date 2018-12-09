@@ -38,6 +38,8 @@ import {SpinnerModule} from 'primeng/spinner';
 import { ToastModule } from 'primeng/toast';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {CheckboxModule} from 'primeng/checkbox';
+import {PickListModule} from 'primeng/picklist';
 
 import {DropdownModule} from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -87,6 +89,8 @@ import { HeaderComponent } from './layouts/header/header.component';
     SpinnerModule,
     InputTextModule,
     DropdownModule,
+    CheckboxModule,
+    PickListModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

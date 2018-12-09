@@ -34,6 +34,32 @@ export class MealService {
      catchError(this.handleError));
   }
 
+  addMeal(userId: number, foodName: string, caloriesCount: number, fatCount: number, carbsCount: number, fiberCount: number,
+    sugarsCount: number, proteinCount: number, measureAmt: string, mealDate: Date, mealType: string, quantity: number): Observable<IMeal> {
+    const obj = {
+      userid: userId,
+      foodname: foodName,
+      calories: caloriesCount,
+      fat: fatCount,
+      carbs: carbsCount,
+      protein: proteinCount,
+      fiber: fiberCount,
+      sugars: sugarsCount,
+      measure: measureAmt,
+      mealdate: mealDate.toISOString().slice(0, 10),
+      mealtype: mealType,
+      quantity: quantity
+    };
+
+    console.log('posting now to ' + this.urlDetail);
+    console.log(obj);
+
+    return this.http.post<IMeal>(this.urlDetail, obj).pipe(
+      retry(3),
+      tap(_ => console.log(`add meal`)),
+      catchError(this.handleError));
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

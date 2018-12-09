@@ -8,7 +8,7 @@
           <b>{{ mealName }}</b>
         </td>
         <td style="text-align:right">
-          <button pButton type="button" class="ui-button-raised" icon="fas fa-plus" routerLink="/meal" [queryParams]="{meal: mealName, mealdate: selectedMealDate.toISOString().slice(0,10)}" ></button>
+          <button pButton type="button" class="ui-button-raised" icon="fas fa-plus" (click)="addClick()"></button>
         </td>
       </tr>
     </table>
@@ -24,8 +24,7 @@
             </a>
           </td>
           <td>{{ rowData.quantity }} x {{ rowData.foodname }}</td>
-          <td style="text-align:right" width="115px">
-            <button pButton type="button" icon="fas fa-edit" class="ui-button-success itembutton"></button>
+          <td style="text-align:right" width="75px">
             <button pButton type="button" icon="fas fa-trash-alt" class="ui-button-danger itembutton" (click)="deleteClick(rowData.id, rowData.foodname)"></button>
           </td>
         </tr>
