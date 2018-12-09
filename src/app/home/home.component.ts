@@ -6,6 +6,7 @@ import { MealItem } from '../models/mealitem';
 import { TopConsumed } from '../models/topconsumed';
 import { IMeal } from '../interfaces/IMeal';
 import { MealService } from '../services/meal.service';
+import { IMealTotals } from '../interfaces/IMealTotals';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import { MealService } from '../services/meal.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  dailyTotals: DailyTotal[];
+  mealTotals: IMealTotals;
   topConsumed: TopConsumed[];
   mealDate: Date;
   meals: IMeal[];
@@ -44,32 +45,18 @@ export class HomeComponent implements OnInit {
       // {'name': 'Test Item #8', 'total': 10},
       // {'name': 'Test Item #9', 'total': 10},
     ];
+    this.getMealTotals();
   }
 
-  computeDailyTotals(meals: IMeal[]) {
-    let calories = 0.00;
-    let protein = 0.00;
-    let fat = 0.00;
-    let fiber = 0.00;
-    let carbs = 0.00;
-    let sugars = 0.00;
+  getMealTotals() {
+    console.log(this.mealTotals);
+    this.mealService
+    .getMealTotals(this.mealDate)
+    .subscribe(mealTotals => {
+      this.mealTotals = mealTotals;
+    });
 
-    for (let i = 0; i < meals.length; i++) {
-      calories = calories + +meals[i].calories;
-      protein += Number(meals[i].protein);
-      fat += Number(meals[i].fat);
-      fiber += Number(meals[i].fiber);
-      carbs += Number(meals[i].carbs);
-      sugars += Number(meals[i].sugars);
-    }
-    this.dailyTotals = [
-      {'category': 'Calories', 'total': calories, 'fromDailyAmt': 0},
-      {'category': 'Protein', 'total': protein, 'fromDailyAmt': 0},
-      {'category': 'Fat', 'total': fat, 'fromDailyAmt': 0},
-      {'category': 'Fiber', 'total': fiber, 'fromDailyAmt': 0},
-      {'category': 'Carbs', 'total': carbs, 'fromDailyAmt': 0},
-      {'category': 'Sugars', 'total': sugars, 'fromDailyAmt': 0}
-    ];
+    console.log(this.mealTotals);
   }
 
   // search() {
@@ -87,11 +74,6 @@ export class HomeComponent implements OnInit {
   //     this.meals = meals;
   //   });
   // }
-
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
-  }
 
   nextClick() {
     this.mealDate = new Date(this.mealDate.getTime() + 86400000);

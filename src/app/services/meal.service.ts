@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, tap, retry } from 'rxjs/operators';
 import { IMeal } from '../interfaces/IMeal';
+import { IMealTotals } from '../interfaces/IMealTotals';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,11 @@ export class MealService {
     return this.http.get<IMeal[]>(this.urlDetail + '?mealdate=' + mealDate.toISOString().slice(0, 10) +
       '&mealtype=' + mealType);
   }
+
+  getMealTotals(mealDate: Date): Observable<IMealTotals> {
+    return this.http.get<IMealTotals>(this.urlDetail + 'totals/?mealdate=' + mealDate.toISOString().slice(0, 10));
+  }
+
 
   deleteMeal(id): Observable<any> {
     return this.http.delete<any>(this.urlDetail + id + '/').pipe(
