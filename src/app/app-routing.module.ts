@@ -6,7 +6,6 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { UsersComponent } from './users/users.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { WeightComponent } from './weight/weight.component';
-import { MealComponent } from './meal/meal.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 const routes: Routes = [
@@ -17,7 +16,6 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'favorites', component: FavoriteComponent },
       { path: 'weighttracking', component: WeightComponent },
-      { path: 'meal', component: MealComponent },
     ]},
   { path: '**', component: NotfoundComponent },
 ];

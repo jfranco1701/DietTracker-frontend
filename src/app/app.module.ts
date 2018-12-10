@@ -7,9 +7,7 @@ import { CardModule } from 'primeng/card';
 import { AppComponent } from './app.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { HomeComponent } from './home/home.component';
-import { LandingComponent } from './landing/landing.component';
 import { DatabaseadminComponent } from './databaseadmin/databaseadmin.component';
-import { MealComponent } from './meal/meal.component';
 import { WeightComponent } from './weight/weight.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationModule } from './authentication/authentication.module';
@@ -43,7 +41,6 @@ import {PickListModule} from 'primeng/picklist';
 
 import {DropdownModule} from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FoodComponent } from './food/food.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -53,14 +50,11 @@ import { HeaderComponent } from './layouts/header/header.component';
     AppComponent,
     FavoriteComponent,
     HomeComponent,
-    LandingComponent,
     DatabaseadminComponent,
-    MealComponent,
     WeightComponent,
     NotfoundComponent,
     UsersComponent,
     MealitemsComponent,
-    FoodComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
     HeaderComponent
