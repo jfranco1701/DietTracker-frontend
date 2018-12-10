@@ -36,7 +36,9 @@
       </p-table>
     </p-panel>
   </div>
-  <div class="p-col-8" style="background-color: white; margin-top:8px;"><p-chart type="line" [data]="weightData" [options]="options"></p-chart></div>
+  <div class="p-col-8" style="background-color: white; margin-top:8px;">
+    <p-chart type="line" [data]="weightData" [options]="options"></p-chart>
+  </div>
 </div>
 
 <p-dialog [(visible)]="displayAdd" modal="true" resizable="false" closeOnEscape="false" [closable]="false">

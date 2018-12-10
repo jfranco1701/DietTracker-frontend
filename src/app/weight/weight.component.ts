@@ -51,8 +51,8 @@ export class WeightComponent implements OnInit {
     this.weights = [];
     this.getWeights();
 
-    this.weightStart = 220.5;
-    this.weightGoal = 150;
+    this.weightStart = 0;
+    this.weightGoal = 0;
     this.dayStart = 0;
     this.dayEnd = 0;
 
@@ -64,19 +64,16 @@ export class WeightComponent implements OnInit {
 
   updateChart() {
     let dateLabels: string[];
-    let goal: number[];
     let start: number[];
     let weight: number[];
 
     dateLabels = [];
-    goal = [];
     start = [];
     weight = [];
 
     for (let i = this.weights.length - 1; i >= 0; i--) {
       const date = this.weights[i].weightdate.toString().slice(0, 10);
       dateLabels.push(date.substr(5) + '-' + date.substr(0, 4));
-      goal.push(this.weightGoal);
       start.push(this.weightStart);
       weight.push(this.weights[i].userweight);
     }
@@ -95,12 +92,6 @@ export class WeightComponent implements OnInit {
           data: start,
           fill: false,
           borderColor: '#ff0000'
-        },
-        {
-          label: 'Goal Weight',
-          data: goal,
-          fill: false,
-          borderColor: '#008000'
         }
       ]
     };
@@ -163,6 +154,10 @@ export class WeightComponent implements OnInit {
   getWeights() {
     this.weightService.getWeights().subscribe(weights => {
       this.weights = weights;
+      if (this.weights.length > 0) {
+        this.weightStart = this.weights[this.weights.length - 1].userweight;
+      }
+
       this.updateChart();
     });
   }
