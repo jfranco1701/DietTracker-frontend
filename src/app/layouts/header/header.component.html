@@ -1,11 +1,19 @@
 <p-confirmDialog></p-confirmDialog>
 
-<div class="header p-grid">
-    <div class="p-col">
-      <img src="../../../assets/DietTracker.png" height="50">
+<div class="header">
+    <div class="left">
+        <img src="../../../assets/DietTracker.png" height="50">
     </div>
-    <div class="p-col" style="text-align:right; margin-right:10px;">
-      <button class="headerbutton" pButton type="button" icon="fas fa-user" label="PERSON NAME"></button>
+    <div class="left">
+
+      <div class="topnav">
+        <a routerLink="/home">Home</a>
+        <a routerLink="/favorites">My Favorites</a>
+        <a routerLink="/weighttracking">Weight Tracking</a>
+      </div>
+    </div>
+    <div class="right" style="text-align:right; margin-right:10px;">
+      <button class="headerbutton" pButton type="button" icon="fas fa-user" label="{{userFullName}}"></button>
       <button class="headerbutton" pButton type="button" icon="fas fa-sign-out-alt" label="Logout" (click)="logout()"></button>
     </div>
 </div>

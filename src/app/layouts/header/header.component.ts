@@ -10,6 +10,7 @@ import { ConfirmationService } from 'primeng/api';
   providers: [ConfirmationService]
 })
 export class HeaderComponent implements OnInit {
+  userFullName: string;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -29,6 +30,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    this.userFullName = currentUser.firstName + ' ' + currentUser.lastName;
   }
 
 }
