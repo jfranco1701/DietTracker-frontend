@@ -15,8 +15,8 @@ export class FavoriteService {
     private http: HttpClient,
     private locationService: Location
   ) {
-    const prodUrlDetail = '/api/favorites/';
-    this.urlDetail = locationService.prepareExternalUrl(prodUrlDetail);
+    const prodUrlDetail = 'http://diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/favorites/';
+    this.urlDetail = prodUrlDetail;
   }
 
   getFavorites(): Observable<IFavorite[]> {

@@ -12,8 +12,8 @@ export class WeightService {
   private urlDetail: string;
 
   constructor(private http: HttpClient, private locationService: Location) {
-    const prodUrlDetail = '/api/weights/';
-    this.urlDetail = locationService.prepareExternalUrl(prodUrlDetail);
+    const prodUrlDetail = 'http://diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/weights/';
+    this.urlDetail = prodUrlDetail;
   }
 
   getWeights(): Observable<IWeight[]> {

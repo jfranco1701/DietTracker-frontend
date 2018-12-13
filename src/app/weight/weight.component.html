@@ -44,7 +44,7 @@
 <p-dialog [(visible)]="displayAdd" modal="true" resizable="false" closeOnEscape="false" [closable]="false">
   <p-header>Add Weight</p-header>
   <div style="min-height:150px;min-width:300px;padding-top:20px;">
-    <form novalidate (ngSubmit)="onSubmit(weight)" [formGroup]="weight">
+    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="weight">
       <div class="p-grid">
         <div class="p-col-3">Date</div>
         <div class="p-col-6">

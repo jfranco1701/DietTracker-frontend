@@ -13,8 +13,8 @@ export class MealService {
   private urlDetail: string;
 
   constructor(private http: HttpClient, private locationService: Location) {
-    const prodUrlDetail = '/api/meals/';
-    this.urlDetail = locationService.prepareExternalUrl(prodUrlDetail);
+    const prodUrlDetail = 'http://diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/meals/';
+    this.urlDetail = prodUrlDetail;
   }
 
   getMeals(mealDate: Date, mealType: string): Observable<IMeal[]> {

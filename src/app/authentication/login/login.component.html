@@ -22,7 +22,7 @@
             <span *ngFor="let error of errors.username"> <br />{{ error }} </span>
           </div>
           <div style="margin-top:20px;">Password</div>
-          <div><input type="text" formControlName="password" pInputText /></div>
+          <div><input type="password" formControlName="password" pInputText /></div>
           <div class="error" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
             Password is required
           </div>

@@ -9,7 +9,7 @@ import { WeightComponent } from './weight/weight.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '',
     component: HomeLayoutComponent, canActivate: [AuthGuardService],
     children: [
